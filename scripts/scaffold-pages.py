@@ -218,7 +218,7 @@ FOOTER = r'''  <footer class="bg-surface-container-low border-t border-outline-v
         </div>
       </div>
       <div class="border-t border-outline-variant mt-10 pt-6 text-center text-label-sm text-on-surface-variant">
-        © 2025 DailyDose+ — An initiative by MealOBox Foodtech Pvt. Ltd. | All rights reserved.
+        © 2026 DailyDose+ — An initiative by MealOBox Foodtech Pvt. Ltd. | All rights reserved.
       </div>
     </div>
   </footer>'''

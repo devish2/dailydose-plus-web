@@ -210,7 +210,7 @@ For S3: set `index.html` as the default root document. Enable static website hos
 
 ## 📝 License
 
-© 2025 DailyDose+ — An initiative by **MealOBox Foodtech Private Limited**
+© 2026 DailyDose+ — An initiative by **MealOBox Foodtech Private Limited**
 CIN: U72900UP2020PTC132213 | Lucknow, Uttar Pradesh, India
 
 All rights reserved. This codebase is proprietary. Do not reproduce or distribute without written permission from MealOBox Foodtech Pvt. Ltd.

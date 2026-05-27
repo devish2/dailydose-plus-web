@@ -155,7 +155,7 @@ FOOTER = r'''  <footer class="bg-inverse-surface text-inverse-on-surface mt-sect
       </div>
     </div>
     <div class="border-t border-inverse-on-surface/20 px-container-padding py-6 text-center text-label-sm text-inverse-on-surface/70">
-      © 2025 DailyDose+ — An initiative by MealOBox Foodtech Pvt. Ltd.
+      © 2026 DailyDose+ — An initiative by MealOBox Foodtech Pvt. Ltd.
     </div>
   </footer>'''
 
