@@ -23,7 +23,7 @@ Fixed: `w-full top-0 z-50 bg-surface shadow-sm`
 ## Buttons
 
 ```html
-<!-- Primary -->
+<!-- Primary (always text-white, never text-on-primary) -->
 <button class="bg-primary text-white min-h-[56px] rounded-xl active:scale-[0.98]">
 
 <!-- Outlined -->

@@ -27,4 +27,4 @@ Lexend only. Use utilities: `text-display`, `text-headline-lg`, `text-headline-m
 - Tokens: `container-padding` (24px), `stack-gap` (16px), `inline-gap` (12px), `section-margin` (32px)
 - Buttons: `rounded-xl` (large), `rounded-full` (pill/nav CTAs)
 - Cards: `rounded-lg`; feature highlights: `rounded-xl`
-- Shadow: `soft-shadow` only — never `box-shadow-lg` or hard dark shadows
+- Shadow: `soft-shadow` only (`0 4px 20px rgba(0,91,191,0.08)`) — never `shadow-lg` or hard dark shadows

@@ -1,11 +1,15 @@
 ---
-description: DailyDose+ identity, stack, and page structure
+description: DailyDose+ identity, stack, Vital Clarity, components, a11y, and quality gates
 alwaysApply: true
 ---
 
-# DailyDose+ — Core
+# DailyDose+ — Cursor Project Rules
 
-**Product:** DailyDose+ by MealOBox (mealobox.in). Brand voice: calm, competent, trustworthy wellness concierge — not clinical, not generic SaaS.
+**Initiative by MealOBox** | Vital Clarity Design System | mealobox.in
+
+## Identity
+
+DailyDose+ is a health-tech product by MealOBox. Brand voice: **calm, competent, trustworthy** — wellness concierge, not clinical, not generic SaaS.
 
 ## Stack (non-negotiable)
 
@@ -14,18 +18,68 @@ alwaysApply: true
 - Google Fonts: Lexend (300–800); Material Symbols Outlined (CDN)
 - No npm, bundler, or node_modules
 
-## Pages
+## File naming
 
 `index.html`, `features.html`, `how-it-works.html`, `mealobox-sync.html`, `for-providers.html`, `data-security.html`, `terms.html`
 
-Shared navbar/footer: extract from `_components.html` (reference only, not a live page).
+Shared **navbar** and **footer**: extract from `_components.html` (reference only, not deployed).
+
+## Design System — Vital Clarity (NON-NEGOTIABLE)
+
+Never use arbitrary hex in markup or utilities. Use tokens from the `tailwind.config` block in every page `<head>`. Source: `vital_clarity/DESIGN.md`.
+
+| Intent | Token / value |
+|--------|----------------|
+| Medication / urgent UI | `tertiary`, `tertiary-container` |
+| Hydration / positive progress | `water` (#00a651) — token or safelist only |
+| CTAs, nav active, trust | `primary` |
+| Card backgrounds | `surface-container-lowest` |
+| Dark feature cards | `inverse-surface` |
+
+**Typography:** Lexend only — `text-display`, `text-headline-lg`, `text-headline-md`, `text-body-lg`, `text-body-md`, `text-label-lg`, `text-label-sm` (never raw px).
+
+**Spacing:** `container-padding`, `stack-gap`, `inline-gap`, `section-margin` — 8px grid; no ad-hoc spacing.
+
+**Radius:** buttons `rounded-xl` / pill CTAs `rounded-full`; cards `rounded-lg`; feature highlights `rounded-xl`.
+
+**Shadows:** `soft-shadow` only (`0 4px 20px rgba(0,91,191,0.08)`). Never `shadow-lg` or hard dark shadows.
+
+## Components
+
+- **Navbar:** fixed, `w-full`, `top-0`, `z-50`, `bg-surface`, `shadow-sm`
+- **Footer:** 4-column desktop, stacked mobile; `hello@mealobox.in`, `mealobox.in`, copyright line below
+- **Cards:** min `p-6`; medicine cards `border-l-4 border-tertiary-container`
+- **Water UI:** SVG ring with `stroke-dasharray` / `stroke-dashoffset`; token strokes (`stroke-water`, `stroke-surface-container-low`)
+- **Primary button:** `bg-primary text-white min-h-[56px] rounded-xl active:scale-[0.98]`
+- **Outlined:** `border-2 border-current bg-transparent active:scale-[0.98]`
+- Min touch target 44×44px
+
+## JavaScript
+
+- `<script>` at bottom of `<body>` only — no external `.js`
+- `const`/`let`; no `var`; no inline `onclick`
+- `addEventListener`; `IntersectionObserver` for scroll behaviors (ToS nav, scroll-to-top)
+- JS toggles classes; CSS handles transitions
+
+## Accessibility
+
+- `lang="en"` on `<html>`
+- One `h1`, then `h2`, then `h3`
+- `aria-label` on icon-only controls and interactive SVGs
+- `:focus-visible` → `outline-2 outline-primary`
+- State never by color alone — icon or text too
 
 ## Copy & footer
 
 - No Lorem ipsum
-- Footer: hello@mealobox.in, mealobox.in
 - Copyright: © 2025 DailyDose+ — An initiative by MealOBox Foodtech Pvt. Ltd.
 
-## Design tokens source
+## Quality gates (before done)
 
-Full token spec: `vital_clarity/DESIGN.md`. Tailwind config block required in every page `<head>`.
+- No console errors in Chrome; mobile OK at 375px
+- Relative inter-page hrefs correct
+- Full Vital Clarity `tailwind.config` in `<head>`
+- Lexend + Material Symbols load correctly
+- Footer + copyright present on every page
+
+Regenerate pages after shared edits: `python3 scripts/build-pages.py`

@@ -9,7 +9,7 @@ alwaysApply: false
 - All JS in `<script>` at bottom of `<body>` — no external `.js` files
 - `const`/`let` only; no `var`
 - No inline `onclick=` — use `addEventListener`
-- `IntersectionObserver` for scroll behaviors (ToS sticky nav, scroll-to-top)
+- `IntersectionObserver` for scroll behaviors (ToS anchor nav, scroll-to-top sentinel) — not `scroll` listeners for visibility
 - JS toggles classes; CSS handles transitions
 
 # Accessibility

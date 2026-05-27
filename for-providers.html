@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Providers — DailyDose+</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'surface': '#f3faff',
+            'surface-dim': '#c7dde9',
+            'surface-bright': '#f3faff',
+            'surface-container-lowest': '#ffffff',
+            'surface-container-low': '#e6f6ff',
+            'surface-container': '#dbf1fe',
+            'surface-container-high': '#d5ecf8',
+            'surface-container-highest': '#cfe6f2',
+            'surface-variant': '#cfe6f2',
+            'surface-tint': '#005bc0',
+            'on-surface': '#071e27',
+            'on-surface-variant': '#414754',
+            'inverse-surface': '#1e333c',
+            'inverse-on-surface': '#dff4ff',
+            'primary': '#005bbf',
+            'on-primary': '#ffffff',
+            'primary-container': '#1a73e8',
+            'on-primary-container': '#ffffff',
+            'inverse-primary': '#adc7ff',
+            'primary-fixed': '#d8e2ff',
+            'primary-fixed-dim': '#adc7ff',
+            'on-primary-fixed': '#001a41',
+            'on-primary-fixed-variant': '#004493',
+            'secondary': '#546067',
+            'on-secondary': '#ffffff',
+            'secondary-container': '#d8e4ed',
+            'on-secondary-container': '#5a666e',
+            'secondary-fixed': '#d8e4ed',
+            'secondary-fixed-dim': '#bcc8d1',
+            'on-secondary-fixed': '#121d23',
+            'on-secondary-fixed-variant': '#3d484f',
+            'tertiary': '#ad2f34',
+            'on-tertiary': '#ffffff',
+            'tertiary-container': '#cf484a',
+            'on-tertiary-container': '#140001',
+            'tertiary-fixed': '#ffdad8',
+            'tertiary-fixed-dim': '#ffb3b0',
+            'on-tertiary-fixed': '#410006',
+            'on-tertiary-fixed-variant': '#8c1520',
+            'error': '#ba1a1a',
+            'on-error': '#ffffff',
+            'error-container': '#ffdad6',
+            'on-error-container': '#93000a',
+            'outline': '#727785',
+            'outline-variant': '#c1c6d6',
+            'background': '#f3faff',
+            'on-background': '#071e27',
+            'water': '#00a651',
+          },
+          borderRadius: {
+            'sm': '0.25rem',
+            DEFAULT: '0.5rem',
+            'md': '0.75rem',
+            'lg': '1rem',
+            'xl': '1.5rem',
+            'full': '9999px',
+          },
+          spacing: {
+            'unit': '8px',
+            'container-padding': '24px',
+            'stack-gap': '16px',
+            'inline-gap': '12px',
+            'section-margin': '32px',
+          },
+          fontFamily: {
+            sans: ['Lexend', 'sans-serif'],
+            serif: ['Lexend', 'sans-serif'],
+            mono: ['Lexend', 'sans-serif'],
+          },
+          fontSize: {
+            'display': ['34px', { lineHeight: '42px', letterSpacing: '-0.02em', fontWeight: '600' }],
+            'headline-lg': ['24px', { lineHeight: '32px', letterSpacing: '0', fontWeight: '600' }],
+            'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '0', fontWeight: '500' }],
+            'body-lg': ['18px', { lineHeight: '26px', letterSpacing: '0.01em', fontWeight: '400' }],
+            'body-md': ['16px', { lineHeight: '24px', letterSpacing: '0.01em', fontWeight: '400' }],
+            'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.02em', fontWeight: '500' }],
+            'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.04em', fontWeight: '600' }],
+          },
+          boxShadow: {
+            'soft-shadow': '0 4px 20px rgba(0, 91, 191, 0.08)',
+          },
+        },
+      },
+      plugins: [
+        function ({ addBase, theme }) {
+          addBase({
+            ':focus-visible': {
+              outline: '2px solid',
+              outlineOffset: '2px',
+              outlineColor: theme('colors.primary'),
+            },
+          });
+        },
+      ],
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+  <style>
+    * { font-family: 'Lexend', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+    .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+    .soft-shadow { box-shadow: 0 4px 20px rgba(0,91,191,0.08); }
+    .floating-anim { animation: floating 3s ease-in-out infinite; }
+    @keyframes floating { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    .hero-gradient { background: linear-gradient(135deg, #f3faff 0%, #e6f6ff 100%); }
+    .vitality-gradient { background: linear-gradient(135deg, #005bbf, #1a73e8); }
+    #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; }
+    #mobile-menu.is-open { max-height: 480px; }
+    @keyframes pulse-live { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.9); } }
+    .live-pulse { animation: pulse-live 1.5s ease-in-out infinite; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+  <header class="fixed w-full top-0 z-50 bg-surface shadow-sm">
+    <div class="max-w-6xl mx-auto px-container-padding">
+      <nav class="flex items-center justify-between h-16 md:h-20" aria-label="Main navigation">
+        <a href="index.html" class="flex items-center gap-2 shrink-0">
+          <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">medication</span>
+          <span class="flex flex-col leading-tight">
+            <span class="text-primary font-semibold text-headline-md">DailyDose+</span>
+            <span class="text-secondary text-label-sm">by MealOBox</span>
+          </span>
+        </a>
+        <div class="hidden md:flex items-center gap-6">
+          <a href="index.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary">Home</a>
+          <a href="features.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary">Features</a>
+          <a href="how-it-works.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary">How It Works</a>
+          <a href="mealobox-sync.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary">MealOBox Sync</a>
+          <a href="for-providers.html" data-nav-link class="text-body-md transition-colors text-primary font-semibold" aria-current="page">For Providers</a>
+          <a href="data-security.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary">Security</a>
+          <a href="terms.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary">Terms</a>
+          <a href="index.html" class="bg-primary text-white rounded-full px-5 py-2 text-label-lg font-medium hover:opacity-95 active:scale-[0.98] transition-transform whitespace-nowrap">Get Started Free</a>
+        </div>
+        <button type="button" id="menu-toggle" class="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-on-surface" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <span class="material-symbols-outlined" id="menu-toggle-icon" aria-hidden="true">menu</span>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="md:hidden border-t border-outline-variant" aria-label="Mobile navigation">
+        <div class="flex flex-col gap-1 py-4">
+          <a href="index.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary py-3 px-2">Home</a>
+          <a href="features.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary py-3 px-2">Features</a>
+          <a href="how-it-works.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary py-3 px-2">How It Works</a>
+          <a href="mealobox-sync.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary py-3 px-2">MealOBox Sync</a>
+          <a href="for-providers.html" data-nav-link class="text-body-md transition-colors text-primary font-semibold py-3 px-2" aria-current="page">For Providers</a>
+          <a href="data-security.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary py-3 px-2">Security</a>
+          <a href="terms.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary py-3 px-2">Terms</a>
+          <a href="index.html" class="mt-2 bg-primary text-white rounded-full px-5 py-3 text-label-lg font-medium text-center active:scale-[0.98] transition-transform">Get Started Free</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="max-w-7xl mx-auto px-container-padding grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-32 pb-16">
+      <div>
+        <span class="bg-primary-fixed text-on-primary-fixed rounded-full text-label-sm px-3 py-1 inline-flex items-center gap-2 mb-6">
+          <span class="material-symbols-outlined text-base" aria-hidden="true">medical_services</span>
+          For Healthcare Professionals
+        </span>
+        <h1 class="text-display font-extrabold text-primary leading-tight text-5xl lg:text-6xl mb-6">
+          Clinical-Grade Adherence, At Scale.
+        </h1>
+        <p class="text-body-lg text-on-surface-variant mb-8">
+          Give your patients a tool that closes the loop between prescription and practice — while giving your team real-time visibility into adherence, hydration, and nutrition.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#demo-form" class="bg-primary text-white rounded-xl px-8 py-4 min-h-[56px] inline-flex items-center text-label-lg font-medium active:scale-[0.98] transition-transform">Request a Demo</a>
+          <button type="button" class="border-2 border-outline text-on-surface rounded-xl px-8 py-4 min-h-[56px] text-label-lg font-medium active:scale-[0.98] transition-transform" aria-label="Download provider brochure">Download Brochure</button>
+        </div>
+      </div>
+      <div class="bg-surface-container-lowest rounded-xl p-6 soft-shadow relative">
+        <span class="absolute -top-4 -right-4 bg-primary text-on-primary rounded-xl p-4 text-center soft-shadow z-10">
+          <span class="text-display font-bold block leading-none">12,400+</span>
+          <span class="text-label-sm">Patients Monitored Daily</span>
+        </span>
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-headline-md text-on-surface font-semibold">Patient Dashboard</h2>
+          <span class="inline-flex items-center gap-2 bg-[#00a651]/15 text-[#00a651] text-label-sm rounded-full px-3 py-1 font-medium">
+            <span class="w-2 h-2 rounded-full bg-[#00a651] live-pulse" aria-hidden="true"></span>
+            Live
+          </span>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex gap-3 items-center">
+            <span class="w-10 h-10 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center text-label-sm font-semibold shrink-0" aria-hidden="true">PA</span>
+            <span class="flex-1 text-body-md text-on-surface">Patient A — Metformin + Lisinopril</span>
+            <span class="bg-[#00a651] text-white text-label-sm rounded-full px-3 py-1 font-medium shrink-0">98%</span>
+          </li>
+          <li class="flex gap-3 items-center">
+            <span class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-label-sm font-semibold shrink-0" aria-hidden="true">PB</span>
+            <span class="flex-1 text-body-md text-on-surface">Patient B — Vitamin D3</span>
+            <span class="bg-[#00a651] text-white text-label-sm rounded-full px-3 py-1 font-medium shrink-0">98%</span>
+          </li>
+          <li class="flex gap-3 items-center">
+            <span class="w-10 h-10 rounded-full bg-tertiary-fixed text-tertiary flex items-center justify-center text-label-sm font-semibold shrink-0" aria-hidden="true">PC</span>
+            <span class="flex-1 text-body-md text-on-surface">Patient C — Atorvastatin</span>
+            <span class="bg-amber-100 text-amber-800 text-label-sm rounded-full px-3 py-1 font-medium shrink-0">74%</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bg-surface-container-low py-16 border-y border-outline-variant" aria-labelledby="provider-settings-heading">
+      <h2 id="provider-settings-heading" class="text-headline-lg text-on-surface text-center mb-12 px-container-padding">Built for Every Provider Setting</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-stack-gap max-w-7xl mx-auto px-container-padding">
+        <article class="border-l-4 border-tertiary-container bg-surface-container-lowest rounded-lg p-container-padding soft-shadow">
+          <span class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center mb-4" aria-hidden="true">
+            <span class="material-symbols-outlined text-error text-2xl">monitoring</span>
+          </span>
+          <h3 class="text-headline-md text-on-surface mb-3">Patient Adherence Monitoring</h3>
+          <p class="text-body-md text-on-surface-variant mb-6">
+            Real-time dashboard showing daily dose completion rates, missed doses, and refill status across your entire patient panel.
+          </p>
+          <div class="bg-surface-container-highest rounded-full h-2 overflow-hidden mb-2" role="progressbar" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100" aria-label="Current panel average adherence">
+            <div class="bg-tertiary h-2 rounded-full w-[74%]"></div>
+          </div>
+          <div class="flex justify-between text-label-sm text-on-surface-variant">
+            <span>Current Panel Average</span>
+            <span class="font-semibold text-on-surface">74%</span>
+          </div>
+        </article>
+        <article class="border-l-4 border-primary bg-surface-container-lowest rounded-lg p-container-padding soft-shadow">
+          <span class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center mb-4" aria-hidden="true">
+            <span class="material-symbols-outlined text-primary text-2xl">verified_user</span>
+          </span>
+          <h3 class="text-headline-md text-on-surface mb-3">HIPAA-Compliant Ecosystem</h3>
+          <p class="text-body-md text-on-surface-variant mb-6">
+            Full Business Associate Agreement (BAA) available. AES-256 encryption, audit trails, role-based access, and US data residency included as standard.
+          </p>
+          <a href="data-security.html" class="text-primary text-label-lg font-medium hover:underline inline-flex items-center gap-1">View BAA Terms →</a>
+        </article>
+        <article class="border-l-4 border-[#00a651] bg-surface-container-lowest rounded-lg p-container-padding soft-shadow">
+          <span class="w-12 h-12 rounded-full bg-[#e8f5e9] flex items-center justify-center mb-4" aria-hidden="true">
+            <span class="material-symbols-outlined text-[#00a651] text-2xl">corporate_fare</span>
+          </span>
+          <h3 class="text-headline-md text-on-surface mb-3">Corporate Wellness Integration</h3>
+          <p class="text-body-md text-on-surface-variant">
+            Bulk employee enrollment, anonymised aggregate reporting, SSO/SAML support, and an API for integration with your existing HR or wellness platforms.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-container-padding py-16" aria-labelledby="compliance-heading">
+      <h2 id="compliance-heading" class="text-headline-lg text-on-surface text-center mb-10">Compliance &amp; Certifications</h2>
+      <div class="flex justify-center gap-8 flex-wrap">
+        <div class="border border-outline-variant rounded-xl p-6 flex flex-col items-center gap-2 text-center w-40">
+          <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">verified_user</span>
+          <span class="text-label-lg font-semibold text-on-surface">HIPAA</span>
+          <span class="text-label-sm text-[#00a651] font-medium">Verified</span>
+        </div>
+        <div class="border border-outline-variant rounded-xl p-6 flex flex-col items-center gap-2 text-center w-40">
+          <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">lock</span>
+          <span class="text-label-lg font-semibold text-on-surface">AES-256</span>
+          <span class="text-label-sm text-on-surface-variant">Encryption</span>
+        </div>
+        <div class="border border-outline-variant rounded-xl p-6 flex flex-col items-center gap-2 text-center w-40">
+          <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">security</span>
+          <span class="text-label-lg font-semibold text-on-surface">SOC 2</span>
+          <span class="text-label-sm text-on-surface-variant">Planned 2026</span>
+        </div>
+        <div class="border border-outline-variant rounded-xl p-6 flex flex-col items-center gap-2 text-center w-40">
+          <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">gavel</span>
+          <span class="text-label-lg font-semibold text-on-surface">DPDP Act</span>
+          <span class="text-label-sm text-on-surface-variant">India 2023</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo-form" class="max-w-2xl mx-auto px-container-padding py-16">
+      <h2 class="text-headline-lg text-on-surface text-center mb-8">Schedule a Demo</h2>
+      <form id="provider-demo-form" class="bg-surface-container-lowest rounded-xl p-8 soft-shadow" novalidate>
+        <div class="mb-6">
+          <label for="demo-name" class="text-label-lg font-medium text-on-surface block mb-2">Name</label>
+          <input id="demo-name" name="name" type="text" required placeholder="Dr. Priya Sharma" class="w-full border-2 border-outline-variant rounded-lg px-4 py-3 text-body-md bg-surface focus:border-primary outline-none" />
+          <p id="err-name" class="text-error text-label-sm mt-1 hidden" role="alert"></p>
+        </div>
+        <div class="mb-6">
+          <label for="demo-org" class="text-label-lg font-medium text-on-surface block mb-2">Organisation</label>
+          <input id="demo-org" name="organisation" type="text" required placeholder="Apollo Hospitals, Lucknow" class="w-full border-2 border-outline-variant rounded-lg px-4 py-3 text-body-md bg-surface focus:border-primary outline-none" />
+          <p id="err-org" class="text-error text-label-sm mt-1 hidden" role="alert"></p>
+        </div>
+        <div class="mb-6">
+          <label for="demo-email" class="text-label-lg font-medium text-on-surface block mb-2">Email</label>
+          <input id="demo-email" name="email" type="email" required placeholder="doctor@hospital.com" class="w-full border-2 border-outline-variant rounded-lg px-4 py-3 text-body-md bg-surface focus:border-primary outline-none" />
+          <p id="err-email" class="text-error text-label-sm mt-1 hidden" role="alert"></p>
+        </div>
+        <div class="mb-6">
+          <label for="demo-role" class="text-label-lg font-medium text-on-surface block mb-2">Role</label>
+          <select id="demo-role" name="role" required class="w-full border-2 border-outline-variant rounded-lg px-4 py-3 text-body-md bg-surface focus:border-primary outline-none" aria-label="Role">
+            <option value="">Select your role</option>
+            <option value="Physician">Physician</option>
+            <option value="Pharmacist">Pharmacist</option>
+            <option value="Hospital Admin">Hospital Admin</option>
+            <option value="Corporate HR">Corporate HR</option>
+            <option value="Other">Other</option>
+          </select>
+          <p id="err-role" class="text-error text-label-sm mt-1 hidden" role="alert"></p>
+        </div>
+        <button type="submit" class="bg-primary text-white w-full rounded-xl py-4 min-h-[56px] font-bold mt-6 active:scale-[0.98] transition-transform">Request Demo</button>
+      </form>
+      <div id="demo-success" class="hidden bg-surface-container-low rounded-xl p-8 text-center soft-shadow mt-0" role="status">
+        <span class="material-symbols-outlined text-[#00a651] text-5xl mb-4 block" aria-hidden="true">check_circle</span>
+        <p class="text-headline-md text-on-surface">Thank you! We&apos;ll be in touch within one business day.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-surface-container-low border-t border-outline-variant mt-section-margin">
+    <div class="max-w-6xl mx-auto px-container-padding py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <a href="index.html" class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true">medication</span>
+            <span class="text-primary font-semibold text-headline-md">DailyDose+</span>
+          </a>
+          <p class="text-body-md text-on-surface-variant mb-6">An initiative by MealOBox dedicated to guided vitality.</p>
+          <div class="flex gap-3">
+            <a href="mailto:hello@mealobox.in" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" aria-label="Email hello@mealobox.in">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">mail</span>
+            </a>
+            <a href="https://mealobox.in" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" rel="noopener noreferrer" aria-label="Visit mealobox.in">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">language</span>
+            </a>
+            <a href="https://mealobox.in" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" rel="noopener noreferrer" aria-label="MealOBox community">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">groups</span>
+            </a>
+          </div>
+        </div>
+        <div>
+          <p class="text-label-lg font-semibold text-on-surface mb-4">Product</p>
+          <ul class="space-y-2 text-body-md">
+            <li><a href="features.html" class="text-on-surface-variant hover:text-primary transition-colors">Features</a></li>
+            <li><a href="how-it-works.html" class="text-on-surface-variant hover:text-primary transition-colors">How It Works</a></li>
+            <li><a href="mealobox-sync.html" class="text-on-surface-variant hover:text-primary transition-colors">MealOBox Sync</a></li>
+            <li><a href="for-providers.html" class="text-on-surface-variant hover:text-primary transition-colors">For Providers</a></li>
+            <li><a href="features.html" class="text-on-surface-variant hover:text-primary transition-colors">App Tour</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-label-lg font-semibold text-on-surface mb-4">Legal</p>
+          <ul class="space-y-2 text-body-md">
+            <li><a href="data-security.html" class="text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</a></li>
+            <li><a href="terms.html" class="text-on-surface-variant hover:text-primary transition-colors">Terms of Service</a></li>
+            <li><a href="data-security.html" class="text-on-surface-variant hover:text-primary transition-colors">Data Security</a></li>
+            <li><a href="data-security.html" class="text-on-surface-variant hover:text-primary transition-colors">HIPAA Disclosure</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-label-lg font-semibold text-on-surface mb-4">Contact</p>
+          <ul class="space-y-2 text-body-md">
+            <li><a href="mailto:hello@mealobox.in" class="text-on-surface-variant hover:text-primary transition-colors">hello@mealobox.in</a></li>
+            <li><a href="https://mealobox.in" class="text-on-surface-variant hover:text-primary transition-colors" rel="noopener noreferrer">mealobox.in</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-outline-variant mt-10 pt-6 text-center text-label-sm text-on-surface-variant">
+        © 2025 DailyDose+ — An initiative by MealOBox Foodtech Pvt. Ltd. | All rights reserved.
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-toggle-icon');
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = mobileMenu.classList.toggle('is-open');
+          menuToggle.setAttribute('aria-expanded', String(isOpen));
+          menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          if (menuIcon) menuIcon.textContent = isOpen ? 'close' : 'menu';
+        });
+      }
+
+      const page = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('[data-nav-link]').forEach((link) => {
+        const href = link.getAttribute('href');
+        const isActive = href === page || (page === '' && href === 'index.html');
+        if (isActive) {
+          link.classList.add('text-primary', 'font-semibold');
+          link.classList.remove('text-on-surface-variant');
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.classList.remove('text-primary', 'font-semibold');
+          link.classList.add('text-on-surface-variant');
+          link.removeAttribute('aria-current');
+        }
+      });
+
+      const form = document.getElementById('provider-demo-form');
+      const success = document.getElementById('demo-success');
+      if (form && success) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('demo-name');
+          const org = document.getElementById('demo-org');
+          const email = document.getElementById('demo-email');
+          const role = document.getElementById('demo-role');
+          const errName = document.getElementById('err-name');
+          const errOrg = document.getElementById('err-org');
+          const errEmail = document.getElementById('err-email');
+          const errRole = document.getElementById('err-role');
+          let valid = true;
+
+          const showErr = (el, errEl, msg) => {
+            if (errEl) {
+              errEl.textContent = msg;
+              errEl.classList.remove('hidden');
+            }
+            valid = false;
+          };
+          const hideErr = (errEl) => errEl?.classList.add('hidden');
+
+          [errName, errOrg, errEmail, errRole].forEach(hideErr);
+
+          if (!name?.value.trim()) showErr(name, errName, 'Name is required.');
+          if (!org?.value.trim()) showErr(org, errOrg, 'Organisation is required.');
+          const em = email?.value.trim() || '';
+          if (!em || !em.includes('@')) showErr(email, errEmail, 'Enter a valid email address.');
+          if (!role?.value) showErr(role, errRole, 'Please select a role.');
+
+          if (valid) {
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+          }
+        });
+      }
+
+      const scrollBtn = document.createElement('button');
+      scrollBtn.type = 'button';
+      scrollBtn.id = 'scroll-top-btn';
+      scrollBtn.className = 'fixed bottom-6 right-6 bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center z-50 soft-shadow opacity-0 pointer-events-none transition-opacity duration-300';
+      scrollBtn.setAttribute('aria-label', 'Scroll to top');
+      scrollBtn.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>';
+      document.body.appendChild(scrollBtn);
+
+      const toggleScrollTop = () => {
+        const show = window.scrollY > 300;
+        scrollBtn.classList.toggle('opacity-0', !show);
+        scrollBtn.classList.toggle('pointer-events-none', !show);
+        scrollBtn.classList.toggle('opacity-100', show);
+      };
+      window.addEventListener('scroll', toggleScrollTop, { passive: true });
+      toggleScrollTop();
+      scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+</body>
+</html>

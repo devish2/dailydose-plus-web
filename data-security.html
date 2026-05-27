@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Security — DailyDose+</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'surface': '#f3faff',
+            'surface-dim': '#c7dde9',
+            'surface-bright': '#f3faff',
+            'surface-container-lowest': '#ffffff',
+            'surface-container-low': '#e6f6ff',
+            'surface-container': '#dbf1fe',
+            'surface-container-high': '#d5ecf8',
+            'surface-container-highest': '#cfe6f2',
+            'surface-variant': '#cfe6f2',
+            'surface-tint': '#005bc0',
+            'on-surface': '#071e27',
+            'on-surface-variant': '#414754',
+            'inverse-surface': '#1e333c',
+            'inverse-on-surface': '#dff4ff',
+            'primary': '#005bbf',
+            'on-primary': '#ffffff',
+            'primary-container': '#1a73e8',
+            'on-primary-container': '#ffffff',
+            'inverse-primary': '#adc7ff',
+            'primary-fixed': '#d8e2ff',
+            'primary-fixed-dim': '#adc7ff',
+            'on-primary-fixed': '#001a41',
+            'on-primary-fixed-variant': '#004493',
+            'secondary': '#546067',
+            'on-secondary': '#ffffff',
+            'secondary-container': '#d8e4ed',
+            'on-secondary-container': '#5a666e',
+            'secondary-fixed': '#d8e4ed',
+            'secondary-fixed-dim': '#bcc8d1',
+            'on-secondary-fixed': '#121d23',
+            'on-secondary-fixed-variant': '#3d484f',
+            'tertiary': '#ad2f34',
+            'on-tertiary': '#ffffff',
+            'tertiary-container': '#cf484a',
+            'on-tertiary-container': '#140001',
+            'tertiary-fixed': '#ffdad8',
+            'tertiary-fixed-dim': '#ffb3b0',
+            'on-tertiary-fixed': '#410006',
+            'on-tertiary-fixed-variant': '#8c1520',
+            'error': '#ba1a1a',
+            'on-error': '#ffffff',
+            'error-container': '#ffdad6',
+            'on-error-container': '#93000a',
+            'outline': '#727785',
+            'outline-variant': '#c1c6d6',
+            'background': '#f3faff',
+            'on-background': '#071e27',
+            'water': '#00a651',
+          },
+          borderRadius: {
+            'sm': '0.25rem',
+            DEFAULT: '0.5rem',
+            'md': '0.75rem',
+            'lg': '1rem',
+            'xl': '1.5rem',
+            'full': '9999px',
+          },
+          spacing: {
+            'unit': '8px',
+            'container-padding': '24px',
+            'stack-gap': '16px',
+            'inline-gap': '12px',
+            'section-margin': '32px',
+          },
+          fontFamily: {
+            sans: ['Lexend', 'sans-serif'],
+            serif: ['Lexend', 'sans-serif'],
+            mono: ['Lexend', 'sans-serif'],
+          },
+          fontSize: {
+            'display': ['34px', { lineHeight: '42px', letterSpacing: '-0.02em', fontWeight: '600' }],
+            'headline-lg': ['24px', { lineHeight: '32px', letterSpacing: '0', fontWeight: '600' }],
+            'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '0', fontWeight: '500' }],
+            'body-lg': ['18px', { lineHeight: '26px', letterSpacing: '0.01em', fontWeight: '400' }],
+            'body-md': ['16px', { lineHeight: '24px', letterSpacing: '0.01em', fontWeight: '400' }],
+            'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.02em', fontWeight: '500' }],
+            'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.04em', fontWeight: '600' }],
+          },
+          boxShadow: {
+            'soft-shadow': '0 4px 20px rgba(0, 91, 191, 0.08)',
+          },
+        },
+      },
+      plugins: [
+        function ({ addBase, theme }) {
+          addBase({
+            ':focus-visible': {
+              outline: '2px solid',
+              outlineOffset: '2px',
+              outlineColor: theme('colors.primary'),
+            },
+          });
+        },
+      ],
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+  <style>
+    * { font-family: 'Lexend', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+    .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+    .soft-shadow { box-shadow: 0 4px 20px rgba(0,91,191,0.08); }
+    .floating-anim { animation: floating 3s ease-in-out infinite; }
+    @keyframes floating { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    .hero-gradient { background: linear-gradient(135deg, #f3faff 0%, #e6f6ff 100%); }
+    .vitality-gradient { background: linear-gradient(135deg, #005bbf, #1a73e8); }
+    #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; }
+    #mobile-menu.is-open { max-height: 480px; }
+    .accordion-panel { overflow: hidden; max-height: 0; transition: max-height 0.3s ease-in-out; }
+    .accordion-icon { transition: transform 0.3s ease-in-out; }
+    .accordion-icon.is-open { transform: rotate(180deg); }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+  <header class="fixed w-full top-0 z-50 bg-surface shadow-sm">
+    <div class="max-w-6xl mx-auto px-container-padding">
+      <nav class="flex items-center justify-between h-16 md:h-20" aria-label="Main navigation">
+        <a href="index.html" class="flex items-center gap-2 shrink-0">
+          <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">medication</span>
+          <span class="flex flex-col leading-tight">
+            <span class="text-primary font-semibold text-headline-md">DailyDose+</span>
+            <span class="text-secondary text-label-sm">by MealOBox</span>
+          </span>
+        </a>
+        <div class="hidden md:flex items-center gap-6">
+          <a href="index.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary">Home</a>
+          <a href="features.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary">Features</a>
+          <a href="how-it-works.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary">How It Works</a>
+          <a href="mealobox-sync.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary">MealOBox Sync</a>
+          <a href="for-providers.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary">For Providers</a>
+          <a href="data-security.html" data-nav-link class="text-body-md transition-colors text-primary font-semibold" aria-current="page">Security</a>
+          <a href="terms.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary">Terms</a>
+          <a href="index.html" class="bg-primary text-white rounded-full px-5 py-2 text-label-lg font-medium hover:opacity-95 active:scale-[0.98] transition-transform whitespace-nowrap">Get Started Free</a>
+        </div>
+        <button type="button" id="menu-toggle" class="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-on-surface" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <span class="material-symbols-outlined" id="menu-toggle-icon" aria-hidden="true">menu</span>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="md:hidden border-t border-outline-variant" aria-label="Mobile navigation">
+        <div class="flex flex-col gap-1 py-4">
+          <a href="index.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary py-3 px-2">Home</a>
+          <a href="features.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary py-3 px-2">Features</a>
+          <a href="how-it-works.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary py-3 px-2">How It Works</a>
+          <a href="mealobox-sync.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary py-3 px-2">MealOBox Sync</a>
+          <a href="for-providers.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary py-3 px-2">For Providers</a>
+          <a href="data-security.html" data-nav-link class="text-body-md transition-colors text-primary font-semibold py-3 px-2" aria-current="page">Security</a>
+          <a href="terms.html" data-nav-link class="text-body-md transition-colors text-on-surface-variant hover:text-primary py-3 px-2">Terms</a>
+          <a href="index.html" class="mt-2 bg-primary text-white rounded-full px-5 py-3 text-label-lg font-medium text-center active:scale-[0.98] transition-transform">Get Started Free</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="hero-gradient text-center pt-32 pb-16 px-container-padding">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-display md:text-5xl font-bold text-on-surface mb-6">
+          Your Privacy is Our Primary Prescription.
+        </h1>
+        <p class="text-body-lg text-on-surface-variant">
+          DailyDose+ employs military-grade security protocols to ensure your health data remains private, secure, and exclusively yours.
+        </p>
+        <div class="flex justify-center gap-4 mt-6 flex-wrap">
+          <span class="bg-primary-fixed text-on-primary-fixed rounded-full text-label-sm px-4 py-2 font-medium">HIPAA Verified</span>
+          <span class="bg-[#e8f5e9] text-[#1b5e20] rounded-full text-label-sm px-4 py-2 font-medium">AES-256 Encrypted</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-container-padding py-section-margin grid grid-cols-1 md:grid-cols-2 gap-6" aria-labelledby="pillars-heading">
+      <h2 id="pillars-heading" class="sr-only">Security pillars</h2>
+      <article class="bg-surface-container-lowest rounded-lg p-8 soft-shadow flex gap-6 items-start">
+        <span class="w-12 h-12 rounded-full bg-primary-fixed text-primary flex items-center justify-center shrink-0" aria-hidden="true">
+          <span class="material-symbols-outlined text-2xl">lock</span>
+        </span>
+        <div>
+          <h3 class="text-headline-md text-on-surface mb-2">AES-256 Encryption</h3>
+          <p class="text-body-md text-on-surface-variant">All data is encrypted at rest and in transit using 256-bit AES — the global gold standard for sensitive health data.</p>
+        </div>
+      </article>
+      <article class="bg-surface-container-lowest rounded-lg p-8 soft-shadow flex gap-6 items-start">
+        <span class="w-12 h-12 rounded-full bg-tertiary-fixed text-tertiary flex items-center justify-center shrink-0" aria-hidden="true">
+          <span class="material-symbols-outlined text-2xl">fingerprint</span>
+        </span>
+        <div>
+          <h3 class="text-headline-md text-on-surface mb-2">Biometric + 2FA</h3>
+          <p class="text-body-md text-on-surface-variant">Multi-factor authentication with native FaceID and TouchID support prevents unauthorised account access.</p>
+        </div>
+      </article>
+      <article class="bg-surface-container-lowest rounded-lg p-8 soft-shadow flex gap-6 items-start">
+        <span class="w-12 h-12 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shrink-0" aria-hidden="true">
+          <span class="material-symbols-outlined text-2xl">visibility_off</span>
+        </span>
+        <div>
+          <h3 class="text-headline-md text-on-surface mb-2">Zero-Knowledge Architecture</h3>
+          <p class="text-body-md text-on-surface-variant">Our systems are designed so that only you can decrypt your data. Even DailyDose+ engineers cannot read your health records.</p>
+        </div>
+      </article>
+      <article class="bg-surface-container-lowest rounded-lg p-8 soft-shadow flex gap-6 items-start">
+        <span class="w-12 h-12 rounded-full bg-secondary-container text-secondary flex items-center justify-center shrink-0" aria-hidden="true">
+          <span class="material-symbols-outlined text-2xl">public</span>
+        </span>
+        <div>
+          <h3 class="text-headline-md text-on-surface mb-2">Regional Data Residency</h3>
+          <p class="text-body-md text-on-surface-variant">Your data stays in your region. Indian users: AWS Mumbai (ap-south-1). Global: configurable per enterprise plan.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-container-padding py-section-margin" aria-labelledby="hipaa-heading">
+      <div class="bg-inverse-surface text-inverse-on-surface rounded-xl p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center soft-shadow">
+        <div class="text-center md:text-left shrink-0">
+          <span class="material-symbols-outlined text-8xl text-primary-fixed block" aria-hidden="true">verified</span>
+          <p class="text-display font-bold mt-2">VERIFIED</p>
+          <p class="text-label-sm opacity-60 mt-1">Cert ID: DD-772-HIPAA</p>
+        </div>
+        <div>
+          <h2 id="hipaa-heading" class="text-headline-lg mb-4">HIPAA Disclosure</h2>
+          <p class="text-body-md text-inverse-on-surface/90">
+            DailyDose+ (an initiative of MealOBox Foodtech Pvt. Ltd.) acts as a Business Associate under HIPAA 1996. We have implemented technical, physical, and administrative safeguards meeting or exceeding the HIPAA Security Rule and Privacy Rule. A Business Associate Agreement (BAA) is available for all healthcare provider partners.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-container-padding py-section-margin" aria-labelledby="accordion-heading">
+      <h2 id="accordion-heading" class="text-headline-lg text-on-surface mb-8">Data Handling Protocols</h2>
+      <div id="security-accordion">
+        <div class="accordion-item border border-outline-variant rounded-lg mb-3 overflow-hidden">
+          <button type="button" class="accordion-trigger w-full flex justify-between items-center gap-4 p-5 cursor-pointer bg-surface-container-lowest hover:bg-surface-container-low text-left min-h-[56px]" aria-expanded="false" aria-controls="acc-panel-1" aria-label="What data do we collect?">
+            <span class="text-headline-md text-on-surface font-medium">What data do we collect?</span>
+            <span class="material-symbols-outlined accordion-icon shrink-0" aria-hidden="true">expand_more</span>
+          </button>
+          <div id="acc-panel-1" class="accordion-panel" role="region" aria-labelledby="acc-heading-1">
+            <div id="acc-heading-1" class="p-5 bg-surface-container-lowest border-t border-outline-variant text-body-md text-on-surface-variant">
+              Medication names, dosage schedules, water intake logs, uploaded health documents (user-controlled).
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item border border-outline-variant rounded-lg mb-3 overflow-hidden">
+          <button type="button" class="accordion-trigger w-full flex justify-between items-center gap-4 p-5 cursor-pointer bg-surface-container-lowest hover:bg-surface-container-low text-left min-h-[56px]" aria-expanded="false" aria-controls="acc-panel-2" aria-label="How long is data retained?">
+            <span class="text-headline-md text-on-surface font-medium">How long is data retained?</span>
+            <span class="material-symbols-outlined accordion-icon shrink-0" aria-hidden="true">expand_more</span>
+          </button>
+          <div id="acc-panel-2" class="accordion-panel" role="region">
+            <div class="p-5 bg-surface-container-lowest border-t border-outline-variant text-body-md text-on-surface-variant">
+              Active data: indefinitely while account exists. Deleted data: purged within 30 days from all backups.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item border border-outline-variant rounded-lg mb-3 overflow-hidden">
+          <button type="button" class="accordion-trigger w-full flex justify-between items-center gap-4 p-5 cursor-pointer bg-surface-container-lowest hover:bg-surface-container-low text-left min-h-[56px]" aria-expanded="false" aria-controls="acc-panel-3" aria-label="Do we share data with third parties?">
+            <span class="text-headline-md text-on-surface font-medium">Do we share data with third parties?</span>
+            <span class="material-symbols-outlined accordion-icon shrink-0" aria-hidden="true">expand_more</span>
+          </button>
+          <div id="acc-panel-3" class="accordion-panel" role="region">
+            <div class="p-5 bg-surface-container-lowest border-t border-outline-variant text-body-md text-on-surface-variant">
+              Only with MealOBox (for tiffin personalisation, under BAA) and your chosen healthcare provider (with explicit consent). Never sold.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item border border-outline-variant rounded-lg mb-3 overflow-hidden">
+          <button type="button" class="accordion-trigger w-full flex justify-between items-center gap-4 p-5 cursor-pointer bg-surface-container-lowest hover:bg-surface-container-low text-left min-h-[56px]" aria-expanded="false" aria-controls="acc-panel-4" aria-label="Your rights under DPDP, GDPR, and HIPAA">
+            <span class="text-headline-md text-on-surface font-medium">Your rights (DPDP / GDPR / HIPAA)</span>
+            <span class="material-symbols-outlined accordion-icon shrink-0" aria-hidden="true">expand_more</span>
+          </button>
+          <div id="acc-panel-4" class="accordion-panel" role="region">
+            <div class="p-5 bg-surface-container-lowest border-t border-outline-variant text-body-md text-on-surface-variant">
+              You have the right to access, correct, export, and delete all personal health data at any time via Settings → Privacy.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item border border-outline-variant rounded-lg mb-3 overflow-hidden">
+          <button type="button" class="accordion-trigger w-full flex justify-between items-center gap-4 p-5 cursor-pointer bg-surface-container-lowest hover:bg-surface-container-low text-left min-h-[56px]" aria-expanded="false" aria-controls="acc-panel-5" aria-label="How to report a security concern?">
+            <span class="text-headline-md text-on-surface font-medium">How to report a security concern?</span>
+            <span class="material-symbols-outlined accordion-icon shrink-0" aria-hidden="true">expand_more</span>
+          </button>
+          <div id="acc-panel-5" class="accordion-panel" role="region">
+            <div class="p-5 bg-surface-container-lowest border-t border-outline-variant text-body-md text-on-surface-variant">
+              Email: <a href="mailto:security@mealobox.in" class="text-primary underline">security@mealobox.in</a>. Response SLA: 48 hours. Responsible disclosure policy available on request.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-container-padding pb-section-margin" aria-labelledby="residency-heading">
+      <h2 id="residency-heading" class="text-headline-lg text-on-surface mb-6">Data Residency by Region</h2>
+      <div class="overflow-x-auto rounded-lg border border-outline-variant soft-shadow">
+        <table class="w-full border-collapse min-w-[480px]">
+          <thead>
+            <tr class="bg-surface-container-high text-on-surface text-label-lg">
+              <th class="text-left p-4 font-semibold border-b border-outline-variant">Region</th>
+              <th class="text-left p-4 font-semibold border-b border-outline-variant">Data Center</th>
+              <th class="text-left p-4 font-semibold border-b border-outline-variant">Provider</th>
+              <th class="text-left p-4 font-semibold border-b border-outline-variant">Status</th>
+            </tr>
+          </thead>
+          <tbody class="bg-surface-container-lowest text-body-md text-on-surface">
+            <tr class="border-b border-outline-variant">
+              <td class="p-4">India</td>
+              <td class="p-4">ap-south-1 (Mumbai)</td>
+              <td class="p-4">AWS</td>
+              <td class="p-4 text-[#00a651] font-medium">Active</td>
+            </tr>
+            <tr class="border-b border-outline-variant">
+              <td class="p-4">United States</td>
+              <td class="p-4">us-east-1 (Virginia)</td>
+              <td class="p-4">AWS</td>
+              <td class="p-4 text-[#00a651] font-medium">Active</td>
+            </tr>
+            <tr class="border-b border-outline-variant">
+              <td class="p-4">Europe</td>
+              <td class="p-4">eu-west-1 (Ireland)</td>
+              <td class="p-4">AWS</td>
+              <td class="p-4 text-on-surface-variant">Coming Q3 2026</td>
+            </tr>
+            <tr>
+              <td class="p-4">Middle East</td>
+              <td class="p-4">me-south-1 (Bahrain)</td>
+              <td class="p-4">AWS</td>
+              <td class="p-4 text-on-surface-variant">Planned</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-label-sm text-on-surface-variant italic mt-4">
+        Enterprise customers may request custom data residency arrangements. Contact <a href="mailto:hello@mealobox.in" class="text-primary underline">hello@mealobox.in</a>.
+      </p>
+    </section>
+  </main>
+  <footer class="bg-surface-container-low border-t border-outline-variant mt-section-margin">
+    <div class="max-w-6xl mx-auto px-container-padding py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <a href="index.html" class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true">medication</span>
+            <span class="text-primary font-semibold text-headline-md">DailyDose+</span>
+          </a>
+          <p class="text-body-md text-on-surface-variant mb-6">An initiative by MealOBox dedicated to guided vitality.</p>
+          <div class="flex gap-3">
+            <a href="mailto:hello@mealobox.in" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" aria-label="Email hello@mealobox.in">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">mail</span>
+            </a>
+            <a href="https://mealobox.in" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" rel="noopener noreferrer" aria-label="Visit mealobox.in">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">language</span>
+            </a>
+            <a href="https://mealobox.in" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" rel="noopener noreferrer" aria-label="MealOBox community">
+              <span class="material-symbols-outlined text-xl" aria-hidden="true">groups</span>
+            </a>
+          </div>
+        </div>
+        <div>
+          <p class="text-label-lg font-semibold text-on-surface mb-4">Product</p>
+          <ul class="space-y-2 text-body-md">
+            <li><a href="features.html" class="text-on-surface-variant hover:text-primary transition-colors">Features</a></li>
+            <li><a href="how-it-works.html" class="text-on-surface-variant hover:text-primary transition-colors">How It Works</a></li>
+            <li><a href="mealobox-sync.html" class="text-on-surface-variant hover:text-primary transition-colors">MealOBox Sync</a></li>
+            <li><a href="for-providers.html" class="text-on-surface-variant hover:text-primary transition-colors">For Providers</a></li>
+            <li><a href="features.html" class="text-on-surface-variant hover:text-primary transition-colors">App Tour</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-label-lg font-semibold text-on-surface mb-4">Legal</p>
+          <ul class="space-y-2 text-body-md">
+            <li><a href="data-security.html" class="text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</a></li>
+            <li><a href="terms.html" class="text-on-surface-variant hover:text-primary transition-colors">Terms of Service</a></li>
+            <li><a href="data-security.html" class="text-on-surface-variant hover:text-primary transition-colors">Data Security</a></li>
+            <li><a href="data-security.html" class="text-on-surface-variant hover:text-primary transition-colors">HIPAA Disclosure</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-label-lg font-semibold text-on-surface mb-4">Contact</p>
+          <ul class="space-y-2 text-body-md">
+            <li><a href="mailto:hello@mealobox.in" class="text-on-surface-variant hover:text-primary transition-colors">hello@mealobox.in</a></li>
+            <li><a href="https://mealobox.in" class="text-on-surface-variant hover:text-primary transition-colors" rel="noopener noreferrer">mealobox.in</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-outline-variant mt-10 pt-6 text-center text-label-sm text-on-surface-variant">
+        © 2025 DailyDose+ — An initiative by MealOBox Foodtech Pvt. Ltd. | All rights reserved.
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-toggle-icon');
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = mobileMenu.classList.toggle('is-open');
+          menuToggle.setAttribute('aria-expanded', String(isOpen));
+          menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+          if (menuIcon) menuIcon.textContent = isOpen ? 'close' : 'menu';
+        });
+      }
+
+      const page = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('[data-nav-link]').forEach((link) => {
+        const href = link.getAttribute('href');
+        const isActive = href === page || (page === '' && href === 'index.html');
+        if (isActive) {
+          link.classList.add('text-primary', 'font-semibold');
+          link.classList.remove('text-on-surface-variant');
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.classList.remove('text-primary', 'font-semibold');
+          link.classList.add('text-on-surface-variant');
+          link.removeAttribute('aria-current');
+        }
+      });
+
+      document.querySelectorAll('.accordion-trigger').forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          const panelId = trigger.getAttribute('aria-controls');
+          const panel = panelId ? document.getElementById(panelId) : null;
+          const icon = trigger.querySelector('.accordion-icon');
+          if (!panel) return;
+
+          const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+          if (isOpen) {
+            panel.style.maxHeight = '0px';
+            trigger.setAttribute('aria-expanded', 'false');
+            icon?.classList.remove('is-open');
+          } else {
+            const inner = panel.firstElementChild;
+            panel.style.maxHeight = `${inner ? inner.scrollHeight : panel.scrollHeight}px`;
+            trigger.setAttribute('aria-expanded', 'true');
+            icon?.classList.add('is-open');
+          }
+        });
+      });
+
+      window.addEventListener('resize', () => {
+        document.querySelectorAll('.accordion-trigger[aria-expanded="true"]').forEach((trigger) => {
+          const panel = document.getElementById(trigger.getAttribute('aria-controls') || '');
+          const inner = panel?.firstElementChild;
+          if (panel && inner) panel.style.maxHeight = `${inner.scrollHeight}px`;
+        });
+      });
+
+      const scrollBtn = document.createElement('button');
+      scrollBtn.type = 'button';
+      scrollBtn.id = 'scroll-top-btn';
+      scrollBtn.className = 'fixed bottom-6 right-6 bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center z-50 soft-shadow opacity-0 pointer-events-none transition-opacity duration-300';
+      scrollBtn.setAttribute('aria-label', 'Scroll to top');
+      scrollBtn.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">arrow_upward</span>';
+      document.body.appendChild(scrollBtn);
+
+      const toggleScrollTop = () => {
+        const show = window.scrollY > 300;
+        scrollBtn.classList.toggle('opacity-0', !show);
+        scrollBtn.classList.toggle('pointer-events-none', !show);
+        scrollBtn.classList.toggle('opacity-100', show);
+      };
+      window.addEventListener('scroll', toggleScrollTop, { passive: true });
+      toggleScrollTop();
+      scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+</body>
+</html>
