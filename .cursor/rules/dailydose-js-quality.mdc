@@ -1,0 +1,30 @@
+---
+description: JS, accessibility, and quality gates for DailyDose+ pages
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# JavaScript
+
+- All JS in `<script>` at bottom of `<body>` — no external `.js` files
+- `const`/`let` only; no `var`
+- No inline `onclick=` — use `addEventListener`
+- `IntersectionObserver` for scroll behaviors (ToS sticky nav, scroll-to-top)
+- JS toggles classes; CSS handles transitions
+
+# Accessibility
+
+- `lang="en"` on `<html>`
+- One `h1` per page; `h2` sections; `h3` subsections
+- `aria-label` on icon-only buttons and interactive SVGs
+- Focus: `outline-2 outline-primary` on focusable elements
+- Never convey state by color alone — pair with icon or text
+
+# Quality gates (before marking done)
+
+- [ ] No console errors in Chrome
+- [ ] Mobile layout at 375px (iPhone SE)
+- [ ] Relative inter-page hrefs correct
+- [ ] Tailwind config with all Vital Clarity tokens present
+- [ ] Lexend loads (no system font fallback)
+- [ ] Material Symbols render (not raw ligature text)

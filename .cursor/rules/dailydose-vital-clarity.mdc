@@ -1,0 +1,30 @@
+---
+description: Vital Clarity design system for DailyDose+ HTML pages
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# Vital Clarity Design System
+
+Never use arbitrary hex values. Use tokens from the Tailwind config in each file's `<head>`.
+
+## Color intent
+
+| Token / value | Use |
+|---|---|
+| `primary` (#005bbf) | CTAs, nav active, trust signals |
+| `tertiary` / `tertiary-container` | Medication alerts, pill cards, urgent UI |
+| `#00a651` (inline or safelist) | Hydration, positive progress |
+| `surface-container-lowest` (#ffffff) | Card backgrounds |
+| `inverse-surface` (#1e333c) | Dark feature cards |
+
+## Typography
+
+Lexend only. Use utilities: `text-display`, `text-headline-lg`, `text-headline-md`, `text-body-lg`, `text-body-md`, `text-label-lg`, `text-label-sm` — never raw px.
+
+## Spacing & shape
+
+- Tokens: `container-padding` (24px), `stack-gap` (16px), `inline-gap` (12px), `section-margin` (32px)
+- Buttons: `rounded-xl` (large), `rounded-full` (pill/nav CTAs)
+- Cards: `rounded-lg`; feature highlights: `rounded-xl`
+- Shadow: `soft-shadow` only — never `box-shadow-lg` or hard dark shadows

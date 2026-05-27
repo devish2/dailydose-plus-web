@@ -1,0 +1,44 @@
+name: Feature / Page Request
+description: Suggest a new page, section, or UI improvement for DailyDose+ web
+title: "[Feature] "
+labels: ["enhancement"]
+assignees: ["devish2"]
+
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Request type
+      options:
+        - New page
+        - New section on existing page
+        - UI/UX improvement
+        - Copy / content change
+        - Accessibility improvement
+        - Performance improvement
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the feature
+      placeholder: What should be added or changed, and why?
+    validations:
+      required: true
+
+  - type: textarea
+    id: design-ref
+    attributes:
+      label: Design reference
+      placeholder: Link to Figma frame, Stitch export, or describe the visual intent.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: This aligns with the Vital Clarity design system
+          required: true
+        - label: This doesn't break any existing pages
+          required: true

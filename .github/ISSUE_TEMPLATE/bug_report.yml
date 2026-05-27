@@ -1,0 +1,87 @@
+name: Bug Report
+description: Report a visual or functional issue on a DailyDose+ web page
+title: "[Bug] "
+labels: ["bug"]
+assignees: ["devish2"]
+
+body:
+  - type: dropdown
+    id: page
+    attributes:
+      label: Affected page
+      options:
+        - index.html (Landing)
+        - features.html
+        - how-it-works.html
+        - mealobox-sync.html
+        - for-providers.html
+        - data-security.html
+        - terms.html
+        - Multiple pages
+    validations:
+      required: true
+
+  - type: dropdown
+    id: bug-type
+    attributes:
+      label: Bug type
+      options:
+        - Visual / layout
+        - Broken interaction (JS)
+        - Broken link
+        - Mobile responsiveness
+        - Accessibility
+        - Performance
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      placeholder: Describe what you saw vs. what you expected.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open features.html
+        2. Click "+ Add Water"
+        3. SVG ring does not update
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Chrome
+        - Safari
+        - Firefox
+        - Edge
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: viewport
+    attributes:
+      label: Viewport / device
+      options:
+        - Mobile (375px — iPhone SE)
+        - Mobile (390px — iPhone 14)
+        - Tablet (768px — iPad)
+        - Desktop (1280px)
+        - Desktop (1440px+)
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      placeholder: Paste screenshots here if applicable.

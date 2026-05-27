@@ -1,0 +1,13 @@
+# DailyDose+ Web — Code Owners
+# These owners are automatically requested for review on PRs.
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for all files
+* @devish2
+
+# Design system tokens — require founder review
+vital_clarity/ @devish2
+
+# Legal pages — require explicit sign-off
+terms.html @devish2
+data-security.html @devish2

@@ -1,0 +1,31 @@
+---
+description: DailyDose+ identity, stack, and page structure
+alwaysApply: true
+---
+
+# DailyDose+ — Core
+
+**Product:** DailyDose+ by MealOBox (mealobox.in). Brand voice: calm, competent, trustworthy wellness concierge — not clinical, not generic SaaS.
+
+## Stack (non-negotiable)
+
+- Pure HTML5 + Tailwind CSS v3 (CDN, no build step)
+- Vanilla JavaScript ES6+ only — no React, Vue, or frameworks
+- Google Fonts: Lexend (300–800); Material Symbols Outlined (CDN)
+- No npm, bundler, or node_modules
+
+## Pages
+
+`index.html`, `features.html`, `how-it-works.html`, `mealobox-sync.html`, `for-providers.html`, `data-security.html`, `terms.html`
+
+Shared navbar/footer: extract from `_components.html` (reference only, not a live page).
+
+## Copy & footer
+
+- No Lorem ipsum
+- Footer: hello@mealobox.in, mealobox.in
+- Copyright: © 2025 DailyDose+ — An initiative by MealOBox Foodtech Pvt. Ltd.
+
+## Design tokens source
+
+Full token spec: `vital_clarity/DESIGN.md`. Tailwind config block required in every page `<head>`.
