@@ -1,238 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- 
-<!-- ── PRIMARY SEO ─────────────────────────────────────────────────────── -->
-<title>DailyDose+ — Water Tracker & Medicine Reminder App | Free for Android</title>
-<meta name="description" content="DailyDose+ is a free water tracker and medicine reminder app for Android. Set daily water goals, get medicine reminders, and scan medicine labels with AI. Built for India by MealOBox."/>
-<meta name="keywords" content="water tracker, water drinking app, water habit, medicine reminder, medicine tracker, daily water intake, hydration app, water reminder, daily dose, mealobox, dailydose, medicine alarm, water goal, health app india, paani tracker, dawai reminder"/>
-<meta name="author" content="MealOBox Foodtech Private Limited"/>
-<meta name="robots" content="index, follow"/>
-<meta name="googlebot" content="index, follow"/>
-<link rel="canonical" href="https://dailydose.mealobox.in"/>
- 
-<!-- ── OPEN GRAPH (Facebook, WhatsApp, LinkedIn) ─────────────────────── -->
-<meta property="og:type" content="website"/>
-<meta property="og:site_name" content="DailyDose+ by MealOBox"/>
-<meta property="og:title" content="DailyDose+ — Free Water Tracker & Medicine Reminder App"/>
-<meta property="og:description" content="Track daily water intake, manage medicines with smart reminders, and scan medicine labels with AI. Free on Google Play. Built for India."/>
-<meta property="og:url" content="https://dailydose.mealobox.in"/>
-<meta property="og:image" content="https://dailydose.mealobox.in/og-image.png"/>
-<meta property="og:image:width" content="1200"/>
-<meta property="og:image:height" content="630"/>
-<meta property="og:image:alt" content="DailyDose+ water tracker and medicine reminder app"/>
-<meta property="og:locale" content="en_IN"/>
- 
-<!-- ── TWITTER CARD ───────────────────────────────────────────────────── -->
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:site" content="@devish2"/>
-<meta name="twitter:creator" content="@devish2"/>
-<meta name="twitter:title" content="DailyDose+ — Water Tracker & Medicine Reminder"/>
-<meta name="twitter:description" content="Free Android app to track water intake and medicine reminders. AI label scan. Google Fit sync. Built for India by MealOBox."/>
-<meta name="twitter:image" content="https://dailydose.mealobox.in/og-image.png"/>
- 
-<!-- ── MOBILE & APP ───────────────────────────────────────────────────── -->
-<meta name="theme-color" content="#005BBF"/>
-<meta name="mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-title" content="DailyDose+"/>
-<meta name="application-name" content="DailyDose+"/>
- 
-<!-- Google Play Store Smart App Banner (Android) -->
-<meta name="google-play-app" content="app-id=com.mealobox.dailydoseapp"/>
- 
-<!-- ── STRUCTURED DATA — WebSite ─────────────────────────────────────── -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "DailyDose+",
-  "url": "https://dailydose.mealobox.in",
-  "description": "Free water tracker and medicine reminder app for Android. Track daily hydration, manage medicines, AI label scan.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://dailydose.mealobox.in/?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
- 
-<!-- ── STRUCTURED DATA — MobileApplication ──────────────────────────── -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MobileApplication",
-  "name": "DailyDose+",
-  "description": "DailyDose+ is a free Android health companion app for tracking daily water intake and managing medicine schedules. Features AI medicine label scanning using Gemini Vision, Google Fit sync, smart push reminders, and a Parents Version with Hindi UI for elderly users.",
-  "url": "https://dailydose.mealobox.in",
-  "downloadUrl": "https://play.google.com/store/apps/details?id=com.mealobox.dailydoseapp",
-  "operatingSystem": "Android",
-  "applicationCategory": "HealthApplication",
-  "applicationSubCategory": "Medical",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "INR"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.5",
-    "ratingCount": "10",
-    "bestRating": "5"
-  },
-  "author": {
-    "@type": "Organization",
-    "name": "MealOBox Foodtech Private Limited",
-    "url": "https://mealobox.in",
-    "logo": "https://mealobox.in/logo.png"
-  },
-  "featureList": [
-    "Water intake tracking",
-    "Medicine reminder with push notifications",
-    "AI medicine label scan using Gemini Vision",
-    "Google Fit bidirectional sync",
-    "7-day water intake chart",
-    "Medicine adherence streak tracking",
-    "Parents Version with Hindi UI",
-    "Family member health tracking"
-  ],
-  "screenshot": [
-    "https://dailydose.mealobox.in/screenshots/home.png",
-    "https://dailydose.mealobox.in/screenshots/medicine.png",
-    "https://dailydose.mealobox.in/screenshots/water.png"
-  ],
-  "softwareVersion": "1.2.0",
-  "datePublished": "2026-05-15",
-  "dateModified": "2026-06-03",
-  "inLanguage": ["en-IN", "hi-IN"],
-  "countriesSupported": "IN",
-  "availableOnDevice": "Android"
-}
-</script>
- 
-<!-- ── STRUCTURED DATA — Organization ───────────────────────────────── -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "MealOBox Foodtech Private Limited",
-  "alternateName": "MealOBox",
-  "url": "https://mealobox.in",
-  "logo": "https://mealobox.in/logo.png",
-  "description": "MealOBox Foodtech builds AI-native health and food-tech products for Indian consumers, including DailyDose+ (medicine and water tracker) and MealOBox (tiffin subscription platform).",
-  "foundingDate": "2020",
-  "founder": {
-    "@type": "Person",
-    "name": "Devesh Raj",
-    "jobTitle": "Founder & CEO",
-    "url": "https://github.com/devish2"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Lucknow",
-    "addressRegion": "Uttar Pradesh",
-    "addressCountry": "IN"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "devish2@mealobox.in",
-    "contactType": "Customer Support"
-  },
-  "sameAs": [
-    "https://play.google.com/store/apps/developer?id=MealOBox",
-    "https://github.com/devish2",
-    "https://mealobox.in"
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "MealOBox Products",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "SoftwareApplication",
-          "name": "DailyDose+",
-          "url": "https://dailydose.mealobox.in"
-        }
-      }
-    ]
-  }
-}
-</script>
- 
-<!-- ── STRUCTURED DATA — FAQ ─────────────────────────────────────────── -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is DailyDose+?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "DailyDose+ is a free Android app by MealOBox that helps you track daily water intake and manage medicine schedules with smart reminders. It includes AI medicine label scanning, Google Fit sync, and a Parents Version with Hindi UI."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is DailyDose+ free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, DailyDose+ is completely free to download and use on Android. No ads, no subscription required for core features."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How does the water tracker work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Set your daily water goal (default 2.5L), then tap to log each glass you drink. DailyDose+ shows your progress in a ring chart, sends reminders when you fall behind, and syncs with Google Fit automatically."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How does the AI medicine label scan work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Take a photo of any medicine strip or bottle. DailyDose+ uses Google Gemini Vision AI to read the label and automatically fill in the medicine name, dosage, and unit. Works on Indian medicines including Metformin, Thyronorm, Dolo, and more."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is DailyDose+ available in Hindi?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, DailyDose+ includes a Parents Version with full Hindi UI, large fonts, and Hindi push notifications like Dawai Lene Ka Waqt Ho Gaya and Paani Pine Ka Waqt Ho Gaya, designed for elderly Indian users."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is MealOBox?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "MealOBox is an Indian food-tech company based in Lucknow. It operates a tiffin subscription platform connecting students and professionals with local home kitchen vendors, and also builds DailyDose+, an AI-powered health tracking app."
-      }
-    }
-  ]
-}
-</script>
- 
-<!-- ── FAVICONS ───────────────────────────────────────────────────────── -->
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-<link rel="manifest" href="/site.webmanifest"/>
- 
-<!-- ── FONTS ─────────────────────────────────────────────────────────── -->
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180x180.png" />
+  <title>DailyDose+ — Guided Vitality by MealOBox</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'surface': '#f3faff',
+            'surface-dim': '#c7dde9',
+            'surface-bright': '#f3faff',
+            'surface-container-lowest': '#ffffff',
+            'surface-container-low': '#e6f6ff',
+            'surface-container': '#dbf1fe',
+            'surface-container-high': '#d5ecf8',
+            'surface-container-highest': '#cfe6f2',
+            'surface-variant': '#cfe6f2',
+            'surface-tint': '#005bc0',
+            'on-surface': '#071e27',
+            'on-surface-variant': '#414754',
+            'inverse-surface': '#1e333c',
+            'inverse-on-surface': '#dff4ff',
+            'primary': '#005bbf',
+            'on-primary': '#ffffff',
+            'primary-container': '#1a73e8',
+            'on-primary-container': '#ffffff',
+            'inverse-primary': '#adc7ff',
+            'primary-fixed': '#d8e2ff',
+            'primary-fixed-dim': '#adc7ff',
+            'on-primary-fixed': '#001a41',
+            'on-primary-fixed-variant': '#004493',
+            'secondary': '#546067',
+            'on-secondary': '#ffffff',
+            'secondary-container': '#d8e4ed',
+            'on-secondary-container': '#5a666e',
+            'secondary-fixed': '#d8e4ed',
+            'secondary-fixed-dim': '#bcc8d1',
+            'on-secondary-fixed': '#121d23',
+            'on-secondary-fixed-variant': '#3d484f',
+            'tertiary': '#ad2f34',
+            'on-tertiary': '#ffffff',
+            'tertiary-container': '#cf484a',
+            'on-tertiary-container': '#140001',
+            'tertiary-fixed': '#ffdad8',
+            'tertiary-fixed-dim': '#ffb3b0',
+            'on-tertiary-fixed': '#410006',
+            'on-tertiary-fixed-variant': '#8c1520',
+            'error': '#ba1a1a',
+            'on-error': '#ffffff',
+            'error-container': '#ffdad6',
+            'on-error-container': '#93000a',
+            'outline': '#727785',
+            'outline-variant': '#c1c6d6',
+            'background': '#f3faff',
+            'on-background': '#071e27',
+            'water': '#00a651',
+          },
+          borderRadius: {
+            'sm': '0.25rem',
+            DEFAULT: '0.5rem',
+            'md': '0.75rem',
+            'lg': '1rem',
+            'xl': '1.5rem',
+            'full': '9999px',
+          },
+          spacing: {
+            'unit': '8px',
+            'container-padding': '24px',
+            'stack-gap': '16px',
+            'inline-gap': '12px',
+            'section-margin': '32px',
+          },
+          fontFamily: {
+            sans: ['Lexend', 'sans-serif'],
+            serif: ['Lexend', 'sans-serif'],
+            mono: ['Lexend', 'sans-serif'],
+          },
+          fontSize: {
+            'display': ['34px', { lineHeight: '42px', letterSpacing: '-0.02em', fontWeight: '600' }],
+            'headline-lg': ['24px', { lineHeight: '32px', letterSpacing: '0', fontWeight: '600' }],
+            'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '0', fontWeight: '500' }],
+            'body-lg': ['18px', { lineHeight: '26px', letterSpacing: '0.01em', fontWeight: '400' }],
+            'body-md': ['16px', { lineHeight: '24px', letterSpacing: '0.01em', fontWeight: '400' }],
+            'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.02em', fontWeight: '500' }],
+            'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.04em', fontWeight: '600' }],
+          },
+          boxShadow: {
+            'soft-shadow': '0 4px 20px rgba(0, 91, 191, 0.08)',
+          },
+        },
+      },
+      plugins: [
+        function ({ addBase, theme }) {
+          addBase({
+            ':focus-visible': {
+              outline: '2px solid',
+              outlineOffset: '2px',
+              outlineColor: theme('colors.primary'),
+            },
+          });
+        },
+      ],
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+  <style>
+    * { font-family: 'Lexend', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+    .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+    .soft-shadow { box-shadow: 0 4px 20px rgba(0,91,191,0.08); }
+    .floating-anim { animation: floating 3s ease-in-out infinite; }
+    @keyframes floating { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    .hero-gradient { background: linear-gradient(135deg, #f3faff 0%, #e6f6ff 100%); }
+    .vitality-gradient { background: linear-gradient(135deg, #005bbf, #1a73e8); }
+    #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; }
+    #mobile-menu.is-open { max-height: 480px; }
+  </style>
+  <link rel="stylesheet" href="assets/wellness-ui.css" />
 </head>
 <body class="bg-surface text-on-surface antialiased">
   <header class="fixed w-full top-0 z-50 bg-surface shadow-sm">
