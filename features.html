@@ -129,7 +129,15 @@
     .med-checkbox { width: 24px; height: 24px; border-radius: 0.25rem; border: 2px solid #c1c6d6; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; transition: background-color 0.2s, border-color 0.2s; }
     .med-checkbox.is-checked { background-color: #00a651; border-color: #00a651; color: #fff; }
     .flow-connector { border-left: 2px dotted #c1c6d6; margin-left: 0.75rem; padding-left: 2.5rem; }
+    .mealobox-step { opacity: 0.7; transition: all 0.3s ease; }
+    .mealobox-step.active { opacity: 1; }
+    .mealobox-step.active span:first-child { transform: scale(1.15); box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3); }
+    .mealobox-arrow { transition: transform 0.3s ease; }
+    .mealobox-arrow.pulse { animation: arrowPulse 0.6s ease-in-out; }
+    @keyframes arrowPulse { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+    .demo-step-icon { transition: all 0.3s ease; }
   </style>
+  <link rel="stylesheet" href="assets/wellness-ui.css" />
 </head>
 <body class="bg-surface text-on-surface antialiased">
   <header class="fixed w-full top-0 z-50 bg-surface shadow-sm">
@@ -187,7 +195,7 @@
       <h2 id="features-bento-heading" class="sr-only">Feature deep dive</h2>
       <div class="bento-grid">
         <!-- ITEM 1 — Medication Alerts -->
-        <article class="col-span-12 md:col-span-8 bg-surface-container-lowest soft-shadow border-l-[6px] border-tertiary-container rounded-lg p-8">
+        <article class="col-span-12 md:col-span-8 bg-surface-container-lowest soft-shadow border-l-[6px] border-tertiary-container rounded-2xl p-8 bento-med-panel">
           <div class="flex items-center gap-4 mb-6">
             <span class="w-12 h-12 rounded-full bg-tertiary-fixed text-tertiary flex items-center justify-center" aria-hidden="true">
               <span class="material-symbols-outlined">medication</span>
@@ -217,6 +225,38 @@
             <span class="bg-primary-fixed text-on-primary-fixed text-label-sm rounded-full px-3 py-1">Refill Alerts</span>
             <span class="bg-primary-fixed text-on-primary-fixed text-label-sm rounded-full px-3 py-1">Family Mode</span>
           </div>
+          <div class="prescription-card p-5 mb-8" id="feat-prescription" data-prescription-widget>
+            <div class="flex items-center gap-2 mb-4">
+              <span class="material-symbols-outlined text-primary" aria-hidden="true">edit_calendar</span>
+              <h4 class="text-headline-md text-on-surface font-semibold">Update your prescription duration</h4>
+            </div>
+            <p class="text-body-md text-on-surface-variant mb-4">Enter the number of days for your course. Start and end dates define when reminders run — from day one through the last dose.</p>
+            <div class="grid sm:grid-cols-3 gap-4 mb-4">
+              <label class="block">
+                <span class="text-label-sm font-medium text-on-surface-variant block mb-1">Number of days</span>
+                <input type="number" data-rx-days min="1" max="365" value="30" aria-label="Prescription course length in days" />
+              </label>
+              <label class="block">
+                <span class="text-label-sm font-medium text-on-surface-variant block mb-1">Start date</span>
+                <input type="date" data-rx-start value="2026-05-15" aria-label="Course start date" />
+              </label>
+              <label class="block">
+                <span class="text-label-sm font-medium text-on-surface-variant block mb-1">End date</span>
+                <input type="date" data-rx-end readonly aria-label="Course end date" />
+              </label>
+            </div>
+            <div class="flex flex-wrap justify-between gap-2 text-label-sm text-on-surface-variant mb-2">
+              <span><span class="font-medium text-on-surface">Starts:</span> <span data-rx-start-display>15 May 2026</span></span>
+              <span><span class="font-medium text-on-surface">Ends:</span> <span data-rx-end-display>13 Jun 2026</span></span>
+            </div>
+            <div class="flex flex-wrap justify-between gap-2 text-label-lg font-medium text-on-surface mb-2">
+              <span data-rx-day-label>Day 12 of 30</span>
+              <span class="text-primary" data-rx-remaining>18 days left in course</span>
+            </div>
+            <div class="rx-progress-track mb-6" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" aria-label="Prescription course progress">
+              <div class="rx-progress-fill" data-rx-progress style="width: 40%"></div>
+            </div>
+          </div>
           <div class="border-t border-outline-variant pt-6" id="med-schedule">
             <p class="text-label-lg font-semibold text-on-surface mb-4">Today&apos;s schedule</p>
             <div class="med-row flex justify-between items-center gap-4 py-3 border-b border-outline-variant" data-med-row>
@@ -235,27 +275,22 @@
         </article>
 
         <!-- ITEM 2 — Water Tracking -->
-        <article class="col-span-12 md:col-span-4 bg-primary-container text-on-primary-container rounded-lg p-8 flex flex-col">
+        <article class="col-span-12 md:col-span-4 hydration-panel text-on-primary-container rounded-2xl p-8 flex flex-col" id="feat-water-panel" data-water-widget>
           <h3 class="text-headline-md font-semibold mb-2">Daily Hydration</h3>
-          <p class="text-label-sm text-on-primary-container/80 mb-4">Track intake against your daily goal</p>
+          <p class="text-label-sm text-white/80 mb-3">Pour water into your glass with each log</p>
           <div class="flex justify-between text-label-lg mb-2 w-full">
             <span>Current</span>
-            <span id="feat-water-current" class="font-semibold">1.3 L</span>
+            <span data-water-sublabel class="font-semibold">1.3 L</span>
           </div>
-          <div class="flex justify-between text-label-lg mb-6 w-full">
+          <div class="flex justify-between text-label-lg mb-4 w-full">
             <span>Goal</span>
-            <span class="font-semibold">2.0 L</span>
+            <span class="font-semibold">2.0 L · <span data-water-pct>65%</span></span>
           </div>
-          <svg class="w-[120px] h-[120px] -rotate-90 mx-auto" viewBox="0 0 120 120" role="img" aria-label="Hydration progress ring">
-            <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="10" />
-            <circle id="feat-water-progress" cx="60" cy="60" r="50" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="109.96" />
-          </svg>
-          <p id="feat-water-label" class="text-display font-bold text-center mt-4">1.3 / 2.0 L</p>
+          <div data-water-glass-host></div>
+          <p data-water-label class="text-display font-bold text-center mt-2">1.3 / 2.0 L</p>
           <div class="flex flex-wrap gap-2 justify-center mt-4" id="feat-water-buttons">
-            <button type="button" class="feat-water-add bg-white/20 text-white rounded-full px-4 py-2 text-label-lg min-h-[44px] hover:bg-white/30 active:scale-[0.98] transition-colors" data-ml="250" aria-label="Add 250 milliliters of water">+ 250ml</button>
-            <button type="button" class="feat-water-add bg-white/20 text-white rounded-full px-4 py-2 text-label-lg min-h-[44px] hover:bg-white/30 active:scale-[0.98] transition-colors" data-ml="250" aria-label="Add 250 milliliters of water">+ 250ml</button>
-            <button type="button" class="feat-water-add bg-white/20 text-white rounded-full px-4 py-2 text-label-lg min-h-[44px] hover:bg-white/30 active:scale-[0.98] transition-colors" data-ml="250" aria-label="Add 250 milliliters of water">+ 250ml</button>
-            <button type="button" class="feat-water-add bg-white/20 text-white rounded-full px-4 py-2 text-label-lg min-h-[44px] hover:bg-white/30 active:scale-[0.98] transition-colors" data-ml="250" aria-label="Add 250 milliliters of water">+ 250ml</button>
+            <button type="button" data-water-add class="bg-white text-primary rounded-full px-4 py-2 text-label-lg min-h-[44px] font-medium hover:bg-white/90 active:scale-[0.98] transition-colors" data-ml="250" aria-label="Add 250 milliliters of water">+ 250 ml</button>
+            <button type="button" data-water-add class="bg-white/20 text-white border border-white/40 rounded-full px-4 py-2 text-label-lg min-h-[44px] hover:bg-white/30 active:scale-[0.98] transition-colors" data-ml="500" aria-label="Add 500 milliliters of water">+ 500 ml</button>
           </div>
           <div class="flex flex-col gap-2 mt-6">
             <span class="bg-white/15 text-white text-label-sm rounded-full px-3 py-2 text-center">⏰ Next reminder in 45 min</span>
@@ -265,31 +300,51 @@
         </article>
 
         <!-- ITEM 3 — MealOBox Integration -->
-        <article class="col-span-12 md:col-span-5 bg-surface-container-lowest soft-shadow rounded-lg overflow-hidden">
-          <div class="bg-gradient-to-br from-green-50 to-surface-container-low h-40 flex items-center justify-center text-6xl" aria-hidden="true">🥗</div>
+        <article class="col-span-12 md:col-span-5 bg-gradient-to-br from-[#e8f5e9] to-[#c8e6c9] soft-shadow rounded-2xl overflow-hidden">
           <div class="p-6">
-            <h3 class="text-headline-md text-on-surface mb-3">MealOBox Integration</h3>
-            <p class="text-body-md text-on-surface-variant mb-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-12 h-12 rounded-full bg-[#1b5e20] text-white flex items-center justify-center" aria-hidden="true">
+                <span class="material-symbols-outlined">lunch_dining</span>
+              </span>
+              <h3 class="text-headline-md text-[#1b5e20] font-semibold">MealOBox Integration</h3>
+            </div>
+            <p class="text-body-md text-[#2e7d32] mb-6">
               Intelligent sync between your health metrics and your MealOBox tiffin subscription. Our AI identifies nutrient gaps and potential drug–food interactions before your box is packed.
             </p>
-            <ol class="flow-connector list-none space-y-8 m-0 p-0 py-2">
-              <li class="flex items-center gap-3 relative">
-                <span class="absolute -left-[2.35rem] w-6 h-6 rounded-full bg-primary text-white text-label-sm font-bold flex items-center justify-center" aria-hidden="true">1</span>
-                <span class="text-label-lg text-on-surface font-medium">Health Data Sent</span>
-              </li>
-              <li class="flex items-center gap-3 relative">
-                <span class="absolute -left-[2.35rem] w-6 h-6 rounded-full bg-primary text-white text-label-sm font-bold flex items-center justify-center" aria-hidden="true">2</span>
-                <span class="text-label-lg text-on-surface font-medium">AI Analysis</span>
-              </li>
-              <li class="flex items-center gap-3 relative">
-                <span class="absolute -left-[2.35rem] w-6 h-6 rounded-full bg-primary text-white text-label-sm font-bold flex items-center justify-center" aria-hidden="true">3</span>
-                <span class="text-label-lg text-on-surface font-medium">Personalized Tiffin</span>
-              </li>
-            </ol>
-            <div class="flex gap-2 flex-wrap mt-6">
-              <span class="bg-[#e8f5e9] text-[#1b5e20] text-label-sm rounded-full px-3 py-1">AI-Powered</span>
-              <span class="bg-[#e8f5e9] text-[#1b5e20] text-label-sm rounded-full px-3 py-1">Zero Effort</span>
-              <span class="bg-[#e8f5e9] text-[#1b5e20] text-label-sm rounded-full px-3 py-1">Real-Time</span>
+            <div class="bg-white/70 backdrop-blur rounded-xl p-4 mb-4" id="mealobox-flow">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex flex-col items-center flex-1 mealobox-step" data-step="1">
+                  <span class="w-10 h-10 rounded-full bg-[#1b5e20] text-white flex items-center justify-center mb-2 transition-transform">
+                    <span class="material-symbols-outlined text-xl">upload</span>
+                  </span>
+                  <span class="text-label-sm text-[#1b5e20] font-medium text-center">Health Data</span>
+                </div>
+                <span class="material-symbols-outlined text-[#4caf50] mealobox-arrow" aria-hidden="true">arrow_forward</span>
+                <div class="flex flex-col items-center flex-1 mealobox-step" data-step="2">
+                  <span class="w-10 h-10 rounded-full bg-[#4caf50] text-white flex items-center justify-center mb-2 transition-transform">
+                    <span class="material-symbols-outlined text-xl">psychology</span>
+                  </span>
+                  <span class="text-label-sm text-[#1b5e20] font-medium text-center">AI Analysis</span>
+                </div>
+                <span class="material-symbols-outlined text-[#4caf50] mealobox-arrow" aria-hidden="true">arrow_forward</span>
+                <div class="flex flex-col items-center flex-1 mealobox-step" data-step="3">
+                  <span class="w-10 h-10 rounded-full bg-[#81c784] text-white flex items-center justify-center mb-2 transition-transform">
+                    <span class="material-symbols-outlined text-xl">restaurant</span>
+                  </span>
+                  <span class="text-label-sm text-[#1b5e20] font-medium text-center">Your Tiffin</span>
+                </div>
+              </div>
+              <div class="mt-4 p-3 bg-[#1b5e20]/10 rounded-lg">
+                <p class="text-label-sm text-[#1b5e20] text-center" id="mealobox-status">
+                  <span class="material-symbols-outlined text-sm align-middle mr-1" aria-hidden="true">check_circle</span>
+                  Synced: Tomorrow's tiffin adjusted for Metformin timing
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-2 flex-wrap">
+              <span class="bg-white/80 text-[#1b5e20] text-label-sm rounded-full px-3 py-1 font-medium">AI-Powered</span>
+              <span class="bg-white/80 text-[#1b5e20] text-label-sm rounded-full px-3 py-1 font-medium">Zero Effort</span>
+              <span class="bg-white/80 text-[#1b5e20] text-label-sm rounded-full px-3 py-1 font-medium">Real-Time</span>
             </div>
           </div>
         </article>
@@ -337,6 +392,132 @@
         </article>
       </div>
     </section>
+
+    <!-- DEMO APP WORKFLOW -->
+    <section class="py-20 bg-gradient-to-b from-surface to-surface-container-low px-container-padding" id="app-demo">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block bg-primary-fixed text-on-primary-fixed text-label-sm rounded-full px-4 py-1 mb-4">Interactive Demo</span>
+          <h2 class="text-display text-on-surface mb-4">Experience the <span class="text-primary">DailyDose+</span> Workflow</h2>
+          <p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto">Follow the journey from adding a medication to receiving your personalized tiffin. Click each step to see it in action.</p>
+        </div>
+
+        <div class="relative">
+          <!-- Progress Line -->
+          <div class="hidden md:block absolute top-24 left-0 right-0 h-1 bg-outline-variant rounded-full" aria-hidden="true">
+            <div class="h-full bg-primary rounded-full transition-all duration-700" id="demo-progress" style="width: 0%"></div>
+          </div>
+
+          <!-- Steps -->
+          <div class="grid md:grid-cols-5 gap-6 md:gap-4 relative">
+            <!-- Step 1: Add Medication -->
+            <div class="demo-step cursor-pointer group" data-demo-step="1">
+              <div class="flex flex-col items-center">
+                <div class="w-16 h-16 rounded-full bg-surface-container-lowest soft-shadow flex items-center justify-center mb-4 group-hover:scale-110 transition-transform border-4 border-transparent demo-step-icon" data-active-border="border-primary">
+                  <span class="material-symbols-outlined text-primary text-3xl">add_circle</span>
+                </div>
+                <span class="text-label-lg font-semibold text-on-surface text-center">Add Medication</span>
+                <span class="text-label-sm text-on-surface-variant text-center mt-1">Set schedule & dose</span>
+              </div>
+            </div>
+
+            <!-- Step 2: Track Water -->
+            <div class="demo-step cursor-pointer group" data-demo-step="2">
+              <div class="flex flex-col items-center">
+                <div class="w-16 h-16 rounded-full bg-surface-container-lowest soft-shadow flex items-center justify-center mb-4 group-hover:scale-110 transition-transform border-4 border-transparent demo-step-icon">
+                  <span class="material-symbols-outlined text-[#00a651] text-3xl">water_drop</span>
+                </div>
+                <span class="text-label-lg font-semibold text-on-surface text-center">Track Hydration</span>
+                <span class="text-label-sm text-on-surface-variant text-center mt-1">Log daily intake</span>
+              </div>
+            </div>
+
+            <!-- Step 3: Get Reminder -->
+            <div class="demo-step cursor-pointer group" data-demo-step="3">
+              <div class="flex flex-col items-center">
+                <div class="w-16 h-16 rounded-full bg-surface-container-lowest soft-shadow flex items-center justify-center mb-4 group-hover:scale-110 transition-transform border-4 border-transparent demo-step-icon">
+                  <span class="material-symbols-outlined text-tertiary text-3xl">notifications_active</span>
+                </div>
+                <span class="text-label-lg font-semibold text-on-surface text-center">Get Reminded</span>
+                <span class="text-label-sm text-on-surface-variant text-center mt-1">Smart notifications</span>
+              </div>
+            </div>
+
+            <!-- Step 4: AI Sync -->
+            <div class="demo-step cursor-pointer group" data-demo-step="4">
+              <div class="flex flex-col items-center">
+                <div class="w-16 h-16 rounded-full bg-surface-container-lowest soft-shadow flex items-center justify-center mb-4 group-hover:scale-110 transition-transform border-4 border-transparent demo-step-icon">
+                  <span class="material-symbols-outlined text-secondary text-3xl">sync</span>
+                </div>
+                <span class="text-label-lg font-semibold text-on-surface text-center">AI Sync</span>
+                <span class="text-label-sm text-on-surface-variant text-center mt-1">Data to MealOBox</span>
+              </div>
+            </div>
+
+            <!-- Step 5: Receive Tiffin -->
+            <div class="demo-step cursor-pointer group" data-demo-step="5">
+              <div class="flex flex-col items-center">
+                <div class="w-16 h-16 rounded-full bg-surface-container-lowest soft-shadow flex items-center justify-center mb-4 group-hover:scale-110 transition-transform border-4 border-transparent demo-step-icon">
+                  <span class="material-symbols-outlined text-[#1b5e20] text-3xl">lunch_dining</span>
+                </div>
+                <span class="text-label-lg font-semibold text-on-surface text-center">Personalized Tiffin</span>
+                <span class="text-label-sm text-on-surface-variant text-center mt-1">Nutrition matched</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demo Content Panel -->
+          <div class="mt-12 bg-surface-container-lowest rounded-2xl soft-shadow overflow-hidden" id="demo-panel">
+            <div class="bg-primary p-4">
+              <div class="flex items-center gap-3">
+                <div class="flex gap-1.5" aria-hidden="true">
+                  <span class="w-3 h-3 rounded-full bg-white/30"></span>
+                  <span class="w-3 h-3 rounded-full bg-white/30"></span>
+                  <span class="w-3 h-3 rounded-full bg-white/30"></span>
+                </div>
+                <span class="text-label-lg text-white font-medium" id="demo-title">DailyDose+ Demo</span>
+              </div>
+            </div>
+            <div class="p-8" id="demo-content">
+              <div class="text-center py-12">
+                <span class="material-symbols-outlined text-6xl text-primary mb-4">touch_app</span>
+                <p class="text-headline-md text-on-surface mb-2">Click a step above to begin</p>
+                <p class="text-body-md text-on-surface-variant">Experience the complete DailyDose+ workflow</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Auto-play controls -->
+          <div class="flex justify-center gap-4 mt-6">
+            <button type="button" id="demo-autoplay" class="bg-primary text-white rounded-full px-6 py-3 text-label-lg font-medium min-h-[44px] active:scale-[0.98] transition-transform flex items-center gap-2">
+              <span class="material-symbols-outlined text-xl">play_arrow</span>
+              Auto-play Demo
+            </button>
+            <button type="button" id="demo-reset" class="border-2 border-outline-variant text-on-surface rounded-full px-6 py-3 text-label-lg font-medium min-h-[44px] active:scale-[0.98] transition-transform flex items-center gap-2">
+              <span class="material-symbols-outlined text-xl">restart_alt</span>
+              Reset
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- DOWNLOAD APP -->
+    <section class="py-16 bg-gradient-to-r from-primary to-primary-container px-container-padding">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="material-symbols-outlined text-5xl text-white mb-4">smartphone</span>
+        <h2 class="text-headline-lg text-white mb-3">Get DailyDose+ on your phone</h2>
+        <p class="text-body-lg text-white/80 mb-8 max-w-xl mx-auto">Download our app for the best experience. Track medications, hydration, and sync with MealOBox — all from your pocket.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.mealobox.dailydoseapp" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-black text-white rounded-xl px-6 py-3 min-h-[56px] hover:bg-black/90 active:scale-[0.98] transition-transform soft-shadow">
+          <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/>
+          </svg>
+          <span class="flex flex-col items-start leading-tight">
+            <span class="text-label-sm opacity-80">GET IT ON</span>
+            <span class="text-headline-md font-medium">Google Play</span>
+          </span>
+        </a>
+      </div>
+    </section>
   </main>
   <footer class="bg-surface-container-low border-t border-outline-variant mt-section-margin">
     <div class="max-w-6xl mx-auto px-container-padding py-12">
@@ -348,7 +529,7 @@
           </a>
           <p class="text-body-md text-on-surface-variant mb-6">An initiative by MealOBox dedicated to guided vitality.</p>
           <div class="flex gap-3">
-            <a href="mailto:hello@mealobox.in" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" aria-label="Email hello@mealobox.in">
+            <a href="mailto:support@mealobox.in" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" aria-label="Email support@mealobox.in">
               <span class="material-symbols-outlined text-xl" aria-hidden="true">mail</span>
             </a>
             <a href="https://mealobox.in" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors" rel="noopener noreferrer" aria-label="Visit mealobox.in">
@@ -381,7 +562,7 @@
         <div>
           <p class="text-label-lg font-semibold text-on-surface mb-4">Contact</p>
           <ul class="space-y-2 text-body-md">
-            <li><a href="mailto:hello@mealobox.in" class="text-on-surface-variant hover:text-primary transition-colors">hello@mealobox.in</a></li>
+            <li><a href="mailto:support@mealobox.in" class="text-on-surface-variant hover:text-primary transition-colors">support@mealobox.in</a></li>
             <li><a href="https://mealobox.in" class="text-on-surface-variant hover:text-primary transition-colors" rel="noopener noreferrer">mealobox.in</a></li>
           </ul>
         </div>
@@ -420,51 +601,6 @@
         }
       });
 
-      document.querySelectorAll('.med-checkbox').forEach((checkbox) => {
-        checkbox.addEventListener('click', () => {
-          const checked = checkbox.classList.toggle('is-checked');
-          checkbox.setAttribute('aria-checked', String(checked));
-          checkbox.textContent = checked ? '✓' : '';
-          const row = checkbox.closest('[data-med-row]');
-          const label = row?.querySelector('.med-row-label');
-          if (label) {
-            label.classList.toggle('line-through', checked);
-            label.classList.toggle('text-on-surface-variant', checked);
-            label.classList.toggle('text-on-surface', !checked);
-          }
-        });
-      });
-
-      const WATER_GOAL = 2.0;
-      const WATER_CIRC = 314.16;
-      let waterLiters = 1.3;
-      const waterCurrent = document.getElementById('feat-water-current');
-      const waterLabel = document.getElementById('feat-water-label');
-      const waterProgress = document.getElementById('feat-water-progress');
-
-      const updateWater = () => {
-        if (waterCurrent) waterCurrent.textContent = `${waterLiters.toFixed(1)} L`;
-        if (waterLabel) waterLabel.textContent = `${waterLiters.toFixed(1)} / ${WATER_GOAL.toFixed(1)} L`;
-        if (waterProgress) {
-          const pct = Math.min(waterLiters / WATER_GOAL, 1);
-          waterProgress.setAttribute('stroke-dashoffset', String(WATER_CIRC * (1 - pct)));
-        }
-      };
-
-      document.querySelectorAll('.feat-water-add').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          if (waterLiters >= WATER_GOAL) return;
-          waterLiters = Math.min(waterLiters + 0.25, WATER_GOAL);
-          updateWater();
-          if (waterLiters >= WATER_GOAL) {
-            document.querySelectorAll('.feat-water-add').forEach((b) => {
-              b.disabled = true;
-              b.classList.add('opacity-50', 'cursor-not-allowed');
-            });
-          }
-        });
-      });
-
       const scrollBtn = document.createElement('button');
       scrollBtn.type = 'button';
       scrollBtn.id = 'scroll-top-btn';
@@ -484,6 +620,281 @@
       scrollBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+    })();
+  </script>
+  <script src="assets/wellness-ui.js"></script>
+  <script>
+    (function () {
+      if (!window.DailyDoseWellness) return;
+      DailyDoseWellness.initPrescriptionWidget(document.getElementById('feat-prescription'));
+      DailyDoseWellness.initMedCheckboxes(document.getElementById('med-schedule'));
+      const panel = document.getElementById('feat-water-panel');
+      if (panel) DailyDoseWellness.initWaterWidget(panel, { glassId: 'feat', variant: 'dark' });
+
+      // MealOBox flow animation
+      const mealoboxFlow = document.getElementById('mealobox-flow');
+      if (mealoboxFlow) {
+        const steps = mealoboxFlow.querySelectorAll('.mealobox-step');
+        const arrows = mealoboxFlow.querySelectorAll('.mealobox-arrow');
+        const status = document.getElementById('mealobox-status');
+        const statuses = [
+          '<span class="material-symbols-outlined text-sm align-middle mr-1">upload</span> Uploading health data...',
+          '<span class="material-symbols-outlined text-sm align-middle mr-1">psychology</span> AI analyzing your medications...',
+          '<span class="material-symbols-outlined text-sm align-middle mr-1">check_circle</span> Synced: Tomorrow\'s tiffin adjusted for Metformin timing'
+        ];
+        let currentMealStep = 0;
+        const animateMealobox = () => {
+          steps.forEach((s, i) => {
+            s.classList.toggle('active', i <= currentMealStep);
+          });
+          arrows.forEach((a, i) => {
+            if (i === currentMealStep - 1) {
+              a.classList.add('pulse');
+              setTimeout(() => a.classList.remove('pulse'), 600);
+            }
+          });
+          if (status) status.innerHTML = statuses[Math.min(currentMealStep, 2)];
+          currentMealStep = (currentMealStep + 1) % 4;
+          if (currentMealStep === 0) currentMealStep = 0;
+        };
+        animateMealobox();
+        setInterval(animateMealobox, 2000);
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      const DEMO_CONTENT = {
+        1: {
+          title: 'Step 1: Add Your Medication',
+          html: `
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 class="text-headline-lg text-on-surface mb-4">Set up your prescription</h3>
+                <p class="text-body-md text-on-surface-variant mb-6">Add your medications with dosage, timing, and duration. DailyDose+ calculates your entire course automatically.</p>
+                <ul class="space-y-3 text-body-md text-on-surface">
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span> Enter medication name & dosage</li>
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span> Set timing (with/after meals)</li>
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary">check_circle</span> Define course duration in days</li>
+                </ul>
+              </div>
+              <div class="bg-surface-container rounded-xl p-6">
+                <div class="space-y-4">
+                  <div><label class="text-label-sm text-on-surface-variant block mb-1">Medication</label><div class="bg-white border border-outline-variant rounded-lg px-4 py-3 text-body-md">Metformin 500mg</div></div>
+                  <div><label class="text-label-sm text-on-surface-variant block mb-1">Timing</label><div class="bg-white border border-outline-variant rounded-lg px-4 py-3 text-body-md">After breakfast · 8:00 AM</div></div>
+                  <div><label class="text-label-sm text-on-surface-variant block mb-1">Course Duration</label><div class="bg-white border border-outline-variant rounded-lg px-4 py-3 text-body-md">30 days · Ends Jun 13, 2026</div></div>
+                </div>
+              </div>
+            </div>`
+        },
+        2: {
+          title: 'Step 2: Track Your Hydration',
+          html: `
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 class="text-headline-lg text-on-surface mb-4">Stay hydrated effortlessly</h3>
+                <p class="text-body-md text-on-surface-variant mb-6">Log water intake with a single tap. Watch the animated glass fill as you meet your daily goal.</p>
+                <ul class="space-y-3 text-body-md text-on-surface">
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[#00a651]">check_circle</span> Personalized hydration goals</li>
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[#00a651]">check_circle</span> Adjusts for weather & activity</li>
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[#00a651]">check_circle</span> Medication-aware reminders</li>
+                </ul>
+              </div>
+              <div class="bg-gradient-to-br from-[#1a73e8] to-[#005bbf] rounded-xl p-6 text-white text-center">
+                <span class="material-symbols-outlined text-6xl mb-4">water_drop</span>
+                <p class="text-display font-bold">1.5 / 2.0 L</p>
+                <p class="text-label-lg opacity-80 mt-2">75% of daily goal</p>
+                <div class="mt-4 bg-white/20 rounded-full h-3 overflow-hidden"><div class="bg-white h-full rounded-full" style="width: 75%"></div></div>
+              </div>
+            </div>`
+        },
+        3: {
+          title: 'Step 3: Smart Reminders',
+          html: `
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 class="text-headline-lg text-on-surface mb-4">Never miss a dose</h3>
+                <p class="text-body-md text-on-surface-variant mb-6">Context-aware notifications that sync with your meal schedule and adjust based on your routine.</p>
+                <ul class="space-y-3 text-body-md text-on-surface">
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-tertiary">check_circle</span> Meal-synced timing</li>
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-tertiary">check_circle</span> Snooze & reschedule options</li>
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-tertiary">check_circle</span> Family notifications</li>
+                </ul>
+              </div>
+              <div class="space-y-3">
+                <div class="bg-tertiary-fixed border-l-4 border-tertiary rounded-xl p-4 flex items-start gap-3 animate-pulse">
+                  <span class="material-symbols-outlined text-tertiary text-2xl">notifications_active</span>
+                  <div>
+                    <p class="text-label-lg font-semibold text-on-surface">Time for Metformin</p>
+                    <p class="text-body-md text-on-surface-variant">500mg · Take with breakfast</p>
+                    <div class="flex gap-2 mt-3">
+                      <button class="bg-tertiary text-white rounded-lg px-4 py-2 text-label-sm">Mark Taken</button>
+                      <button class="border border-tertiary text-tertiary rounded-lg px-4 py-2 text-label-sm">Snooze 15m</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-surface-container rounded-xl p-4 flex items-start gap-3 opacity-60">
+                  <span class="material-symbols-outlined text-[#00a651] text-2xl">water_drop</span>
+                  <div>
+                    <p class="text-label-lg font-semibold text-on-surface">Hydration reminder</p>
+                    <p class="text-body-md text-on-surface-variant">You're 500ml behind · Log now</p>
+                  </div>
+                </div>
+              </div>
+            </div>`
+        },
+        4: {
+          title: 'Step 4: AI Sync to MealOBox',
+          html: `
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 class="text-headline-lg text-on-surface mb-4">Intelligent nutrition sync</h3>
+                <p class="text-body-md text-on-surface-variant mb-6">Your health data flows securely to MealOBox's AI engine, which analyzes drug-food interactions and nutrient needs.</p>
+                <ul class="space-y-3 text-body-md text-on-surface">
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary">check_circle</span> Encrypted data transfer</li>
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary">check_circle</span> Drug-food interaction check</li>
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary">check_circle</span> Nutrient gap analysis</li>
+                </ul>
+              </div>
+              <div class="bg-surface-container rounded-xl p-6">
+                <div class="flex items-center justify-around mb-6">
+                  <div class="text-center">
+                    <span class="material-symbols-outlined text-4xl text-primary">medication</span>
+                    <p class="text-label-sm text-on-surface-variant mt-1">DailyDose+</p>
+                  </div>
+                  <span class="material-symbols-outlined text-2xl text-secondary animate-pulse">sync</span>
+                  <div class="text-center">
+                    <span class="material-symbols-outlined text-4xl text-[#1b5e20]">lunch_dining</span>
+                    <p class="text-label-sm text-on-surface-variant mt-1">MealOBox</p>
+                  </div>
+                </div>
+                <div class="bg-[#e8f5e9] rounded-lg p-4 text-center">
+                  <span class="material-symbols-outlined text-[#1b5e20] mb-2">verified</span>
+                  <p class="text-label-lg text-[#1b5e20] font-medium">Sync Complete</p>
+                  <p class="text-label-sm text-[#2e7d32]">Updated 2 minutes ago</p>
+                </div>
+              </div>
+            </div>`
+        },
+        5: {
+          title: 'Step 5: Your Personalized Tiffin',
+          html: `
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 class="text-headline-lg text-on-surface mb-4">Nutrition that works for you</h3>
+                <p class="text-body-md text-on-surface-variant mb-6">Your MealOBox tiffin is now curated to complement your medication schedule and fill nutrient gaps.</p>
+                <ul class="space-y-3 text-body-md text-on-surface">
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[#1b5e20]">check_circle</span> Avoids drug-food conflicts</li>
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[#1b5e20]">check_circle</span> Optimized meal timing</li>
+                  <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[#1b5e20]">check_circle</span> Balanced micronutrients</li>
+                </ul>
+              </div>
+              <div class="bg-gradient-to-br from-[#e8f5e9] to-[#c8e6c9] rounded-xl p-6">
+                <p class="text-label-sm text-[#1b5e20] font-medium mb-3">Tomorrow's Tiffin Preview</p>
+                <div class="bg-white rounded-lg p-4 mb-4">
+                  <div class="flex items-center gap-3 mb-3">
+                    <span class="text-3xl">🥗</span>
+                    <div>
+                      <p class="text-label-lg font-semibold text-on-surface">Lunch Box</p>
+                      <p class="text-label-sm text-on-surface-variant">Optimized for Metformin</p>
+                    </div>
+                  </div>
+                  <div class="flex gap-2 flex-wrap">
+                    <span class="bg-[#e8f5e9] text-[#1b5e20] text-label-sm rounded-full px-2 py-0.5">Low GI</span>
+                    <span class="bg-[#e8f5e9] text-[#1b5e20] text-label-sm rounded-full px-2 py-0.5">High Fiber</span>
+                    <span class="bg-[#e8f5e9] text-[#1b5e20] text-label-sm rounded-full px-2 py-0.5">B12 Boost</span>
+                  </div>
+                </div>
+                <p class="text-label-sm text-[#2e7d32] text-center">
+                  <span class="material-symbols-outlined text-sm align-middle">info</span>
+                  Extra B12 added (Metformin can deplete it)
+                </p>
+              </div>
+            </div>`
+        }
+      };
+
+      let currentStep = 0;
+      let autoplayInterval = null;
+      const progressBar = document.getElementById('demo-progress');
+      const demoTitle = document.getElementById('demo-title');
+      const demoContent = document.getElementById('demo-content');
+      const autoplayBtn = document.getElementById('demo-autoplay');
+      const resetBtn = document.getElementById('demo-reset');
+      const steps = document.querySelectorAll('.demo-step');
+
+      function showStep(stepNum) {
+        currentStep = stepNum;
+        steps.forEach((step, i) => {
+          const icon = step.querySelector('.demo-step-icon');
+          if (i + 1 <= stepNum) {
+            icon.classList.add('border-primary', 'scale-110');
+            icon.classList.remove('border-transparent');
+          } else {
+            icon.classList.remove('border-primary', 'scale-110');
+            icon.classList.add('border-transparent');
+          }
+        });
+        if (progressBar) progressBar.style.width = `${(stepNum / 5) * 100}%`;
+        const content = DEMO_CONTENT[stepNum];
+        if (content && demoTitle && demoContent) {
+          demoTitle.textContent = content.title;
+          demoContent.innerHTML = content.html;
+        }
+      }
+
+      function resetDemo() {
+        stopAutoplay();
+        currentStep = 0;
+        steps.forEach((step) => {
+          const icon = step.querySelector('.demo-step-icon');
+          icon.classList.remove('border-primary', 'scale-110');
+          icon.classList.add('border-transparent');
+        });
+        if (progressBar) progressBar.style.width = '0%';
+        if (demoTitle) demoTitle.textContent = 'DailyDose+ Demo';
+        if (demoContent) demoContent.innerHTML = `
+          <div class="text-center py-12">
+            <span class="material-symbols-outlined text-6xl text-primary mb-4">touch_app</span>
+            <p class="text-headline-md text-on-surface mb-2">Click a step above to begin</p>
+            <p class="text-body-md text-on-surface-variant">Experience the complete DailyDose+ workflow</p>
+          </div>`;
+      }
+
+      function startAutoplay() {
+        if (autoplayInterval) return;
+        let step = currentStep || 0;
+        autoplayBtn.innerHTML = '<span class="material-symbols-outlined text-xl">pause</span> Pause';
+        const runStep = () => {
+          step = step >= 5 ? 1 : step + 1;
+          showStep(step);
+          if (step === 5) stopAutoplay();
+        };
+        runStep();
+        autoplayInterval = setInterval(runStep, 3000);
+      }
+
+      function stopAutoplay() {
+        if (autoplayInterval) {
+          clearInterval(autoplayInterval);
+          autoplayInterval = null;
+        }
+        autoplayBtn.innerHTML = '<span class="material-symbols-outlined text-xl">play_arrow</span> Auto-play Demo';
+      }
+
+      steps.forEach((step) => {
+        step.addEventListener('click', () => {
+          stopAutoplay();
+          showStep(Number(step.dataset.demoStep));
+        });
+      });
+
+      autoplayBtn?.addEventListener('click', () => {
+        if (autoplayInterval) stopAutoplay();
+        else startAutoplay();
+      });
+
+      resetBtn?.addEventListener('click', resetDemo);
     })();
   </script>
 </body>

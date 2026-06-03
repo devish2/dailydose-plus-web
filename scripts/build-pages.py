@@ -149,7 +149,7 @@ FOOTER = r'''  <footer class="bg-inverse-surface text-inverse-on-surface mt-sect
       <div>
         <p class="text-label-lg font-semibold mb-3">Contact</p>
         <ul class="space-y-2 text-body-md">
-          <li><a href="mailto:hello@mealobox.in" class="hover:text-inverse-primary transition-colors">hello@mealobox.in</a></li>
+          <li><a href="mailto:support@mealobox.in" class="hover:text-inverse-primary transition-colors">support@mealobox.in</a></li>
           <li><a href="https://mealobox.in" class="hover:text-inverse-primary transition-colors" rel="noopener noreferrer">mealobox.in</a></li>
         </ul>
       </div>
@@ -451,7 +451,7 @@ PAGES = {
           <div id="demo-success" class="hidden text-center py-8" role="status">
             <span class="material-symbols-outlined text-water text-5xl mb-4" aria-hidden="true">check_circle</span>
             <h3 class="text-headline-md mb-2">Request received</h3>
-            <p class="text-body-md text-on-surface-variant">Our team will reach you at hello@mealobox.in within two business days.</p>
+            <p class="text-body-md text-on-surface-variant">Our team will reach you at support@mealobox.in within two business days.</p>
           </div>
         </div>
       </div>
@@ -561,7 +561,7 @@ PAGES = {
           </section>
           <section id="privacy" class="tos-section scroll-mt-28">
             <h2 class="text-headline-lg mb-4">3. Privacy</h2>
-            <p class="text-body-md text-on-surface-variant">See <a href="data-security.html" class="text-primary underline">data security</a> for how we protect your information. Contact hello@mealobox.in for data requests.</p>
+            <p class="text-body-md text-on-surface-variant">See <a href="data-security.html" class="text-primary underline">data security</a> for how we protect your information. Contact support@mealobox.in for data requests.</p>
           </section>
           <section id="liability" class="tos-section scroll-mt-28">
             <h2 class="text-headline-lg mb-4">4. Liability</h2>

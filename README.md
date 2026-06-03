@@ -201,7 +201,7 @@ For S3: set `index.html` as the default root document. Enable static website hos
 
 | | |
 |---|---|
-| Product | hello@mealobox.in |
+| Product | support@mealobox.in |
 | Security | security@mealobox.in |
 | Website | mealobox.in |
 | Founder | Devesh — [@devish2](https://github.com/devish2) |

@@ -47,7 +47,7 @@ Never use arbitrary hex in markup or utilities. Use tokens from the `tailwind.co
 ## Components
 
 - **Navbar:** fixed, `w-full`, `top-0`, `z-50`, `bg-surface`, `shadow-sm`
-- **Footer:** 4-column desktop, stacked mobile; `hello@mealobox.in`, `mealobox.in`, copyright line below
+- **Footer:** 4-column desktop, stacked mobile; `support@mealobox.in`, `mealobox.in`, copyright line below
 - **Cards:** min `p-6`; medicine cards `border-l-4 border-tertiary-container`
 - **Water UI:** SVG ring with `stroke-dasharray` / `stroke-dashoffset`; token strokes (`stroke-water`, `stroke-surface-container-low`)
 - **Primary button:** `bg-primary text-white min-h-[56px] rounded-xl active:scale-[0.98]`

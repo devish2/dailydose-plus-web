@@ -1,0 +1,143 @@
+/* DailyDose+ — interactive wellness demo (water glass + prescription course) */
+
+.water-glass-wrap {
+  position: relative;
+  width: 7.5rem;
+  height: 9.5rem;
+  margin: 0 auto;
+}
+
+.water-glass-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.water-glass-outline {
+  fill: rgba(255, 255, 255, 0.12);
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 2;
+}
+
+.water-glass-outline--light {
+  fill: rgba(0, 91, 191, 0.06);
+  stroke: rgba(0, 91, 191, 0.25);
+}
+
+.water-fill-rect {
+  fill: url(#waterFillGradient);
+  transition: height 0.85s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.water-glass-wrap.is-pouring .water-pour-stream {
+  animation: waterPourStream 1.1s ease-in-out;
+}
+
+.water-pour-stream {
+  fill: #5ec8ff;
+  opacity: 0;
+  transform-origin: 50px 18px;
+}
+
+@keyframes waterPourStream {
+  0% { opacity: 0; transform: scaleY(0); }
+  15% { opacity: 0.95; transform: scaleY(0.35); }
+  55% { opacity: 0.85; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(0.15); }
+}
+
+.water-ripple {
+  animation: waterRipple 0.6s ease-out;
+}
+
+@keyframes waterRipple {
+  0% { opacity: 0.6; r: 2; }
+  100% { opacity: 0; r: 14; }
+}
+
+.water-glass-wrap.is-pouring .water-surface-line {
+  animation: waterSurfaceBob 1.1s ease-in-out;
+}
+
+@keyframes waterSurfaceBob {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-2px); }
+}
+
+.prescription-card {
+  background: linear-gradient(145deg, #f3faff 0%, #e6f6ff 100%);
+  border: 1px solid #c1c6d6;
+  border-radius: 1rem;
+}
+
+.prescription-card--compact {
+  padding: 0.75rem;
+}
+
+.prescription-card input[type="number"],
+.prescription-card input[type="date"] {
+  width: 100%;
+  min-height: 44px;
+  border: 2px solid #c1c6d6;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  background: #fff;
+  color: #071e27;
+}
+
+.prescription-card input:focus {
+  outline: 2px solid #005bbf;
+  outline-offset: 2px;
+}
+
+.rx-progress-track {
+  height: 0.5rem;
+  background: #c1c6d6;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.rx-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #005bbf, #1a73e8);
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+.app-preview-phone {
+  background: linear-gradient(180deg, #1e333c 0%, #071e27 100%);
+  box-shadow: 0 24px 48px rgba(0, 91, 191, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.hydration-panel {
+  background: linear-gradient(160deg, #1a73e8 0%, #005bbf 55%, #004493 100%);
+}
+
+.bento-med-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-med-panel::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 12rem;
+  height: 12rem;
+  background: radial-gradient(circle, rgba(207, 72, 74, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .water-fill-rect,
+  .rx-progress-fill,
+  .water-glass-wrap.is-pouring .water-pour-stream,
+  .water-glass-wrap.is-pouring .water-surface-line,
+  .floating-anim {
+    animation: none !important;
+    transition: none !important;
+  }
+}
