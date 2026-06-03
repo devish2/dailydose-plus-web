@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
     <loc>https://dailydose.mealobox.in/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://dailydose.mealobox.in/"/>
+    <image:image>
+      <image:loc>https://dailydose.mealobox.in/og-image.png</image:loc>
+      <image:title>DailyDose+ — Water Tracker and Medicine Reminder App</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dailydose.mealobox.in/privacy-policy</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <url>
