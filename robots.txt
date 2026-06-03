@@ -1,0 +1,11 @@
+# DailyDose+ by MealOBox
+# https://dailydose.mealobox.in
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://dailydose.mealobox.in/sitemap.xml
+
+# Crawl-delay (optional, be polite to crawlers)
+Crawl-delay: 1

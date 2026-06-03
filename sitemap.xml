@@ -1,32 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://dailydose.mealobox.in/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en-IN" href="https://dailydose.mealobox.in/"/>
-    <image:image>
-      <image:loc>https://dailydose.mealobox.in/og-image.png</image:loc>
-      <image:title>DailyDose+ — Water Tracker and Medicine Reminder App</image:title>
-    </image:image>
   </url>
-
   <url>
-    <loc>https://dailydose.mealobox.in/privacy-policy</loc>
+    <loc>https://dailydose.mealobox.in/features.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dailydose.mealobox.in/how-it-works.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dailydose.mealobox.in/mealobox-sync.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dailydose.mealobox.in/for-providers.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dailydose.mealobox.in/data-security.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dailydose.mealobox.in/terms.html</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-
-  <url>
-    <loc>https://dailydose.mealobox.in/data-security</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
 </urlset>
