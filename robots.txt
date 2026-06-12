@@ -4,8 +4,21 @@
 User-agent: *
 Allow: /
 
+# AI answer engines — explicitly welcome (AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 # Sitemap
 Sitemap: https://dailydose.mealobox.in/sitemap.xml
-
-# Crawl-delay (optional, be polite to crawlers)
-Crawl-delay: 1

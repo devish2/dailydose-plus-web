@@ -60,6 +60,91 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MealOBox Foodtech Pvt. Ltd.",
+    "url": "https://mealobox.in",
+    "logo": "https://dailydose.mealobox.in/assets/dailydose-plus-logo.png",
+    "email": "support@mealobox.in",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lucknow",
+      "addressRegion": "Uttar Pradesh",
+      "addressCountry": "IN"
+    },
+    "brand": {
+      "@type": "Brand",
+      "name": "DailyDose+"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "DailyDose+",
+    "url": "https://dailydose.mealobox.in/",
+    "publisher": { "@type": "Organization", "name": "MealOBox Foodtech Pvt. Ltd." }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is DailyDose+ and is it free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DailyDose+ is a free medicine reminder and water tracking app by MealOBox. It sends smart medication alerts synced to your meal times, tracks your daily hydration goal, and stores your prescriptions in an encrypted health vault. The app is free to download on Google Play with no subscription required for core features."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do medication reminders work in DailyDose+?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Add your medication with its dosage, timing, and course duration. DailyDose+ then sends context-aware reminders timed to your meals and tracks each dose until your course ends. Refill alerts warn you before you run out."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the water tracker help me stay hydrated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Set a daily water goal (default 2 litres) and log each glass with one tap. DailyDose+ shows your progress visually, sends gentle nudges when you fall behind, and adjusts your goal for hot weather or medications that require extra hydration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my health data safe with DailyDose+?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Your prescriptions, reports, and health history are protected with AES-256 encryption at rest and in transit, biometric and two-factor authentication, and a zero-knowledge architecture. DailyDose+ follows HIPAA-aligned safeguards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does DailyDose+ connect with MealOBox tiffins?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "With MealOBox Sync enabled, your medication schedule and nutrition needs flow securely to MealOBox's AI engine. Every tiffin is curated to avoid drug-food interactions and fill nutrient gaps."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I manage medicines for my parents or family?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Family Mode lets you manage schedules for dependents from your own phone and get notified if a dose is missed. It is designed for adult children coordinating care for elderly parents."
+        }
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -178,6 +263,7 @@
     .vitality-gradient { background: linear-gradient(135deg, #005bbf, #1a73e8); }
     #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; }
     #mobile-menu.is-open { max-height: 480px; }
+    .faq-item summary::-webkit-details-marker { display: none; }
   </style>
   <link rel="stylesheet" href="assets/wellness-ui.css" />
 </head>
@@ -480,6 +566,56 @@
             <p class="text-body-lg text-on-surface font-semibold mt-4">🔥 7-day streak</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-surface px-container-padding" aria-labelledby="faq-heading">
+      <h2 id="faq-heading" class="text-display text-center text-on-surface mb-4">Frequently asked <span class="text-primary">questions.</span></h2>
+      <p class="text-body-lg text-on-surface-variant text-center max-w-2xl mx-auto mb-12">Everything you need to know about DailyDose+ — medication reminders, water tracking, and your data.</p>
+      <div class="max-w-3xl mx-auto space-y-4">
+        <details class="faq-item bg-surface-container-lowest rounded-lg soft-shadow p-6 group">
+          <summary class="text-headline-md text-on-surface cursor-pointer list-none flex justify-between items-center gap-4 min-h-[44px]">
+            What is DailyDose+ and is it free?
+            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+          </summary>
+          <p class="text-body-md text-on-surface-variant mt-4 leading-relaxed">DailyDose+ is a free medicine reminder and water tracking app by MealOBox. It sends smart medication alerts synced to your meal times, tracks your daily hydration goal, and stores your prescriptions in an encrypted health vault. The app is free to download on Google Play with no subscription required for core features.</p>
+        </details>
+        <details class="faq-item bg-surface-container-lowest rounded-lg soft-shadow p-6 group">
+          <summary class="text-headline-md text-on-surface cursor-pointer list-none flex justify-between items-center gap-4 min-h-[44px]">
+            How do medication reminders work in DailyDose+?
+            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+          </summary>
+          <p class="text-body-md text-on-surface-variant mt-4 leading-relaxed">Add your medication with its dosage, timing, and course duration (for example, 30 days starting from a given date). DailyDose+ then sends context-aware reminders timed to your meals — like "Metformin 500mg with breakfast at 8:00 AM" — and tracks each dose until your course ends. Refill alerts warn you before you run out.</p>
+        </details>
+        <details class="faq-item bg-surface-container-lowest rounded-lg soft-shadow p-6 group">
+          <summary class="text-headline-md text-on-surface cursor-pointer list-none flex justify-between items-center gap-4 min-h-[44px]">
+            How does the water tracker help me stay hydrated?
+            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+          </summary>
+          <p class="text-body-md text-on-surface-variant mt-4 leading-relaxed">Set a daily water goal (default 2 litres) and log each glass with one tap. DailyDose+ shows your progress visually, sends gentle nudges when you fall behind, and adjusts your goal for hot weather or medications that require extra hydration, such as Metformin.</p>
+        </details>
+        <details class="faq-item bg-surface-container-lowest rounded-lg soft-shadow p-6 group">
+          <summary class="text-headline-md text-on-surface cursor-pointer list-none flex justify-between items-center gap-4 min-h-[44px]">
+            Is my health data safe with DailyDose+?
+            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+          </summary>
+          <p class="text-body-md text-on-surface-variant mt-4 leading-relaxed">Yes. Your prescriptions, reports, and health history are protected with AES-256 encryption at rest and in transit, biometric and two-factor authentication, and a zero-knowledge architecture — only you can see your data. DailyDose+ follows HIPAA-aligned safeguards and offers Business Associate Agreements to healthcare providers.</p>
+        </details>
+        <details class="faq-item bg-surface-container-lowest rounded-lg soft-shadow p-6 group">
+          <summary class="text-headline-md text-on-surface cursor-pointer list-none flex justify-between items-center gap-4 min-h-[44px]">
+            How does DailyDose+ connect with MealOBox tiffins?
+            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+          </summary>
+          <p class="text-body-md text-on-surface-variant mt-4 leading-relaxed">With MealOBox Sync enabled, your medication schedule and nutrition needs flow securely to MealOBox's AI engine. Every tiffin is then curated to avoid drug–food interactions and fill nutrient gaps — for example, adding extra vitamin B12 if you take Metformin long-term.</p>
+        </details>
+        <details class="faq-item bg-surface-container-lowest rounded-lg soft-shadow p-6 group">
+          <summary class="text-headline-md text-on-surface cursor-pointer list-none flex justify-between items-center gap-4 min-h-[44px]">
+            Can I manage medicines for my parents or family?
+            <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180" aria-hidden="true">expand_more</span>
+          </summary>
+          <p class="text-body-md text-on-surface-variant mt-4 leading-relaxed">Yes. Family Mode lets you manage schedules for dependents from your own phone and get notified if a dose is missed. It is designed for adult children coordinating care for elderly parents, with large tap targets and readable type built for seniors.</p>
+        </details>
       </div>
     </section>
 

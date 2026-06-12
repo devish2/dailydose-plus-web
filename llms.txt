@@ -1,0 +1,21 @@
+# DailyDose+
+
+> DailyDose+ is a free medicine reminder and water tracker app for Android, built by MealOBox Foodtech Pvt. Ltd. (Lucknow, India). It offers smart medication alerts synced to meal times, prescription course tracking with start/end dates, one-tap hydration logging, an AES-256 encrypted health vault, Family Mode for managing dependents' medicines, and AI-powered nutrition sync with the MealOBox tiffin subscription service.
+
+Key facts:
+- Free to download on Google Play: https://play.google.com/store/apps/details?id=com.mealobox.dailydoseapp
+- Medication reminders support custom schedules, multi-alarms, refill alerts, and course durations (e.g. 30 days from a start date)
+- Water tracking with a default 2L daily goal, weather-aware adjustments, and medication-aware hydration nudges
+- Health data protected with AES-256 encryption, biometric + 2FA, zero-knowledge architecture, HIPAA-aligned safeguards
+- MealOBox Sync curates tiffin meals to avoid drug-food interactions and fill nutrient gaps
+- Contact: support@mealobox.in
+
+## Pages
+
+- [Home](https://dailydose.mealobox.in/): Overview, medication alerts, hydration tracking, FAQ
+- [Features](https://dailydose.mealobox.in/features.html): Deep dive into medication alerts, water tracking, MealOBox integration, health vault, interactive demo
+- [How It Works](https://dailydose.mealobox.in/how-it-works.html): 4-step setup guide
+- [MealOBox Sync](https://dailydose.mealobox.in/mealobox-sync.html): AI nutrition integration with tiffin service
+- [For Providers](https://dailydose.mealobox.in/for-providers.html): HIPAA-compliant adherence dashboard for healthcare providers
+- [Data Security](https://dailydose.mealobox.in/data-security.html): Encryption, compliance, data residency
+- [Terms](https://dailydose.mealobox.in/terms.html): Terms of service
