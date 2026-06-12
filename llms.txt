@@ -13,6 +13,7 @@ Key facts:
 ## Pages
 
 - [Home](https://dailydose.mealobox.in/): Overview, medication alerts, hydration tracking, FAQ
+- [Medicine Reminder India](https://dailydose.mealobox.in/medicine-reminder-india.html): Free pill/dawai reminder app for India — landing page for SEO
 - [Features](https://dailydose.mealobox.in/features.html): Deep dive into medication alerts, water tracking, MealOBox integration, health vault, interactive demo
 - [How It Works](https://dailydose.mealobox.in/how-it-works.html): 4-step setup guide
 - [MealOBox Sync](https://dailydose.mealobox.in/mealobox-sync.html): AI nutrition integration with tiffin service
